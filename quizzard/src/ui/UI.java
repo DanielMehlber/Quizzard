@@ -11,11 +11,16 @@ public class UI extends MyFrame{
 	
 	public UI(MainComponent mc) {
 		super(MyDesign.FOX);
-		mainComponent = mc;
+		this.mainComponent = mc;
 		setTitle("Quizzard");
+		
 		
 		//Final line
 		go(600, 600);
+	}
+	
+	public MainComponent getMainComponent() {
+		return mainComponent;
 	}
 
 }

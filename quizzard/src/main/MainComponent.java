@@ -7,7 +7,7 @@ public class MainComponent {
 	UI ui;
 	
 	public MainComponent() {
-		ui = new UI();
+		ui = new UI(this);
 	}
 	
 	public static void main(String[]args) {
