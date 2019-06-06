@@ -1,13 +1,20 @@
 package main;
 
+import ui.UI;
+
 public class MainComponent {
 
-	public static void main(String[]args) {
-		
-	}
+	UI ui;
 	
 	public MainComponent() {
-		// TODO Auto-generated constructor stub
+		ui = new UI();
 	}
+	
+	public static void main(String[]args) {
+		Console.info("main", "game started", false);
+		new MainComponent();
+	}
+	
+	
 
 }
