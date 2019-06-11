@@ -14,6 +14,8 @@ import com.danielmehlber.myui.MyLabel;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 
+import main.ErrCode;
+
 public class RegisterPage extends MyPage {
 
 	
@@ -60,6 +62,23 @@ public class RegisterPage extends MyPage {
 		MyButton btnRegister = new MyButton(ui.getDesign(), "Register");
 		btnRegister.setBounds(355, 330, 156, 41);
 		contentHolder.add(btnRegister);
+		btnRegister.addRunnable(() -> {
+			ErrCode code = ui.mainComponent.register(entryUsername.getText(), entryPassword.getText(), entryPasswordRepeat.getText());
+			switch(code) {
+			case ERR_REGISTRATION_USERNAME_TOO_LONG: 
+				entryUsername.error("Too long! Try something else...", 2);
+				break;
+			case ERR_REGISTRATION_PASSWORDS_NOT_MATCHING:
+				entryPasswordRepeat.error("Not matching! Please try again...", 2);
+				break;
+			case ERR_REGISTRATION_REDUNDANT_USERNAME:
+				entryUsername.error("Already taken! Try something else...", 2);
+				break;
+			default:
+				break;
+			}
+		});
+		
 		RegisterPage _this = this;
 		
 		addComponentListener(new ComponentListener() {
