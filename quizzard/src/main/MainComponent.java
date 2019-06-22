@@ -25,16 +25,22 @@ public class MainComponent {
 	 * @return Error Code
 	 */
 	public ErrCode login(String username, String password) {
-		return ErrCode.NULL;
+		return ErrCode.ERR_LOGIN_INCORRECT_USERNAME;
 	}
 	
 	public ErrCode register(String username, String password, String passwordRepeat) {
+		if(username.length() == 0)
+			return ErrCode.ERR_REGISTRATION_USERNAME_EMPTY;
+		if(password.length() == 0)
+			return ErrCode.ERR_REGISTRATION_PASSWORD_EMPTY;
+		
 		if(username.length() > 15)
 			return ErrCode.ERR_REGISTRATION_USERNAME_TOO_LONG;
 		if(!password.equals(passwordRepeat))
 			return ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
 		
 		String hash = getHash(password); password = null; passwordRepeat = null;
+		System.out.println(hash);
 		
 		return ErrCode.NULL;
 	}

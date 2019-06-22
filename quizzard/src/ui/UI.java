@@ -1,9 +1,14 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.JPanel;
+
+import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyDesign;
 import com.danielmehlber.myui.MyFrame;
+import com.danielmehlber.myui.MySyncTask;
 
 import main.MainComponent;
 
@@ -14,18 +19,37 @@ public class UI extends MyFrame{
 	//Pages
 	public StartPage pageStart;
 	public RegisterPage pageRegister;
+	public HomePage pageHome;
+	public static float pageChangeSpeedFac = 4f;
 	
 	public UI(MainComponent mc) {
 		super(design());
+		
 		this.mainComponent = mc;
 		setTitle("Quizzard");
+		setResizable(false);
+		
+		doOnClose(() -> setTitle("Auf Wiedersehen"));
 		
 		pageStart = new StartPage(this);
 		pageRegister = new RegisterPage(this);
+		pageHome = new HomePage(this);
 		
-		changePage(pageStart, null);
-		//Final line
+		changePage(pageHome, null); // DEBUG
+		
 		go(600, 600);
+		
+		new Thread(() -> {
+			while(true) {
+				MyColor prev = getDesign().accentColor;
+				float[] hsv = Color.RGBtoHSB(prev.getRed(), prev.getGreen(), prev.getBlue(), null);
+				int rgb = Color.HSBtoRGB(hsv[0]+0.001f, hsv[1], hsv[2]);
+				getDesign().accentColor = new MyColor(new Color(rgb));
+				getDesign().apply();
+				MySyncTask.sync(30);
+			}
+			
+		}).start();
 	}
 	
 	public MainComponent getMainComponent() {

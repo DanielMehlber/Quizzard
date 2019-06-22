@@ -8,6 +8,8 @@ import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 
+import main.ErrCode;
+
 import java.awt.GridLayout;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
@@ -34,6 +36,7 @@ public class StartPage extends MyPage{
 	private MyTextEntry entryPassword;
 	private MyButton btnCreateProfile;
 	private MyButton btnLogin;
+	private Runnable login;
 	
 	public StartPage(UI ui) {
 		super(ui.getDesign());
@@ -68,15 +71,15 @@ public class StartPage extends MyPage{
 		sl_contentHolder.putConstraint(SpringLayout.EAST, entryPassword, -txtDistanceHorizontal, SpringLayout.EAST, contentHolder);
 		contentHolder.add(entryPassword);
 		
-		btnCreateProfile = new MyButton(ui.getDesign(), "Create Profile");
+		btnCreateProfile = new MyButton(ui.getDesign(), "Ich bin neu");
 		sl_contentHolder.putConstraint(SpringLayout.NORTH, btnCreateProfile, yDistance, SpringLayout.SOUTH, entryPassword);
 		sl_contentHolder.putConstraint(SpringLayout.WEST, btnCreateProfile, 130, SpringLayout.WEST, contentHolder);
 		sl_contentHolder.putConstraint(SpringLayout.SOUTH, btnCreateProfile, 58, SpringLayout.SOUTH, entryPassword);
 		sl_contentHolder.putConstraint(SpringLayout.EAST, btnCreateProfile, 259, SpringLayout.WEST, contentHolder);
 		contentHolder.add(btnCreateProfile);
-		btnCreateProfile.addRunnable(()->{ui.changePage(ui.pageRegister, MyDirection.WEST);});
+		btnCreateProfile.addRunnable(()->{ui.changePage(ui.pageRegister, MyDirection.WEST, UI.pageChangeSpeedFac);});
 		
-		btnLogin = new MyButton(ui.getDesign(), "Login");
+		btnLogin = new MyButton(ui.getDesign(), "Eintreten");
 		sl_contentHolder.putConstraint(SpringLayout.NORTH, btnLogin, yDistance, SpringLayout.SOUTH, entryPassword);
 		sl_contentHolder.putConstraint(SpringLayout.WEST, btnLogin, -253, SpringLayout.EAST, contentHolder);
 		sl_contentHolder.putConstraint(SpringLayout.SOUTH, btnLogin, 58, SpringLayout.SOUTH, entryPassword);
@@ -110,9 +113,28 @@ public class StartPage extends MyPage{
 			}
 		});
 		
-		entryUsername.setSubtext("Your username belongs in here");
+		entryUsername.setSubtext("Verrate mir deinen Namen...");
 		//entryUsername.setFont(entryUsername.getFont().deriveFont(20f)); //TODO: MyTextEntry.setTextSize
-		entryPassword.setSubtext("Your password belongs in here");
+		entryPassword.setSubtext("... und das Passwort, dann darfst du rein.");
+		
+		login = () -> {
+			ErrCode code = ui.mainComponent.login(entryUsername.getText(), ui.mainComponent.getHash(entryPassword.getText()));
+			switch(code) {
+			case ERR_LOGIN_INCORRECT_USERNAME: 
+				entryUsername.error("Ich kenne dich nicht. Willst du beitreten?", 3f);
+				break;
+			case ERR_LOGIN_INCORRECT_PASSWORD:
+				entryPassword.error("Nur mut dem richtigen Passwort kommst du rein!", 3f);
+				break;
+			default:
+				break;
+			}
+			
+		};
+		
+		btnLogin.addRunnable(login);
+		entryUsername.addRunnable(login);
+		entryPassword.addRunnable(login);
 		
 	}
 }
