@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import com.danielmehlber.myui.MyDesign;
@@ -19,8 +20,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpringLayout;
+import javax.swing.border.EmptyBorder;
 
-public class UIGames extends JPanel{
+public class UIGames extends MyPanel{
 	
 	private JScrollPane scrollPane;
 	private ArrayList<GameEntry> gameEntries;
@@ -28,7 +30,12 @@ public class UIGames extends JPanel{
 	private JPanel contentPane;
 	
 	public UIGames(UI ui) {
+		super(ui.getDesign());
 		this.ui = ui;
+		setRoundness(10);
+		setColorStyle(COLOR_STYLE.DESIGN_BASE);
+		setHeader("Spiele");
+		setHeaderStyle(MyPanel.HEADER_STYLE.BOX);
 		gameEntries = new ArrayList<GameEntry>();
 		setLayout(new BorderLayout(0, 0));
 		contentPane = new JPanel();
@@ -36,21 +43,19 @@ public class UIGames extends JPanel{
 		contentPane.setLayout(null);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBackground(Color.WHITE);
-		add(scrollPane);
-		//super(d);
-		//setHeader("Spiele");
-		//setHeaderStyle(MyPanel.HEADER_STYLE.BOX);
-		//TODO: setRoundness
 		
+		add(scrollPane);
+		applyDesign();
 		
 	}
 	
 	public void addGame(int id, String name) {
-		GameEntry ge = new GameEntry(id, name);
-		ge.setLocation(0, gameEntries.size()*ge.getHeight());
+		GameEntry ge = new GameEntry(ui, id, name);
+		ge.setLocation(0, (int)(gameEntries.size()*ge.getHeight()*1.05));
 		gameEntries.add(ge);
 		contentPane.add(ge);
 		scrollPane.revalidate();
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		contentPane.setPreferredSize(new Dimension(200, ge.getHeight() * gameEntries.size()));
 		System.out.println(contentPane.getHeight());
 	}
@@ -64,6 +69,19 @@ public class UIGames extends JPanel{
 			}
 		}
 		return r;
+	}
+	
+	@Override
+	public void applyDesign() {
+		if(contentPane == null)
+			return;
+		MyDesign design = getDesign();
+		scrollPane.setBackground(design.baseColor);
+		contentPane.setBackground(design.baseColor);
+		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+		verticalScrollBar.setBackground(design.baseColor);
+		verticalScrollBar.setForeground(design.accentColor);
+		verticalScrollBar.setBorder(new EmptyBorder(getInsets()));
 	}
 
 }

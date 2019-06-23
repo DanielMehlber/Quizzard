@@ -17,6 +17,7 @@ public class HomePage extends MyPage{
 	
 	private UI ui;
 	private UIGames uiGames;
+	private UIProfile uiProfile;
 	
 	/**
 	 * @param ui
@@ -27,6 +28,7 @@ public class HomePage extends MyPage{
 		setLayout(new BorderLayout(0, 0));
 		
 		uiGames = new UIGames(ui);
+		uiProfile = new UIProfile(ui);
 		
 		JPanel topPanel = new JPanel();
 		add(topPanel, BorderLayout.NORTH);
@@ -47,11 +49,12 @@ public class HomePage extends MyPage{
 		
 		JPanel rightPanel = new JPanel();
 		add(rightPanel, BorderLayout.EAST);
-		rightPanel.setPreferredSize(new Dimension(200, 0));
+		rightPanel.setPreferredSize(new Dimension(300, 0));
 		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 		
 		JPanel uiProfilHolder = new JPanel();
 		rightPanel.add(uiProfilHolder);
+		uiProfilHolder.add(uiProfile, BorderLayout.CENTER);
 		
 		JPanel uiFreundeHolder = new JPanel();
 		rightPanel.add(uiFreundeHolder);
@@ -59,11 +62,8 @@ public class HomePage extends MyPage{
 		JPanel uiChat = new JPanel();
 		add(uiChat, BorderLayout.CENTER);
 		
-		for(int i = 0; i < 50; i++) {
-			uiGames.addGame(i, String.valueOf(i));
-		}
-		
-		
+		uiGames.addGame(0, "$BEAT ME$");
+		uiGames.addGame(0, "JOIN FOR FREE");
 		
 	}
 }

@@ -2,11 +2,14 @@ package ui;
 
 import javax.swing.JPanel;
 
-import com.sun.media.jfxmedia.effects.EqualizerBand;
+import com.danielmehlber.myui.MyColor;
+import com.danielmehlber.myui.MyPanel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-public class GameEntry extends JPanel{
+public class GameEntry extends MyPanel{
 
 	private String name;
 	private int id;
@@ -14,22 +17,62 @@ public class GameEntry extends JPanel{
 	private JLabel currentRound;
 	private int playerCount;
 	private JLabel players;
+	private UI ui;
+	private MyColor _color;
 	
-	public GameEntry(int id, String name) {
-		setSize(200, 88);
+	public GameEntry(UI ui, int id, String name) {
+		super(ui.getDesign());
+		this.ui = ui;
+		setSize(180, 65);
 		setLayout(null);
+		setTitled(false);
+		setColorStyle(COLOR_STYLE.DESIGN_ACCENT);
+		setRoundness(20);
 		
 		JLabel gameName = new JLabel(name);
 		gameName.setBounds(10, 5, 183, 20);
 		add(gameName);
-		
+		gameName.setFont(ui.getDesign().font);
 		currentRound = new JLabel("Runde: K/A");
-		currentRound.setBounds(20, 38, 173, 16);
+		currentRound.setBounds(20, 25, 173, 16);
 		add(currentRound);
 		
 		players = new JLabel("Spieler: K/A");
-		players.setBounds(20, 54, 168, 16);
+		players.setBounds(20, 40, 168, 16);
 		add(players);
+		
+		
+		addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				setColor(((MyColor)getColor()).darker(30));
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setColor(((MyColor) getColor()).lighter(30));
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setColor(_color);
+				reset();
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				_color = (MyColor) getColor();
+				setColor((MyColor) _color.darker(30));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 
 	public int getRound() {

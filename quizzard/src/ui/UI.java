@@ -49,7 +49,7 @@ public class UI extends MyFrame{
 				MySyncTask.sync(30);
 			}
 			
-		}).start();
+		});
 	}
 	
 	public MainComponent getMainComponent() {
