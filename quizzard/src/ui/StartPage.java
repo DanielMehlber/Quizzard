@@ -120,7 +120,7 @@ public class StartPage extends MyPage{
 		login = () -> {
 			ErrCode code = ui.mainComponent.login(entryUsername.getText(), ui.mainComponent.getHash(entryPassword.getText()));
 			switch(code) {
-			case ERR_LOGIN_INCORRECT_USERNAME: 
+			case ERR_LOGIN_UNKNOWN_USER: 
 				entryUsername.error("Ich kenne dich nicht. Willst du beitreten?", 3f);
 				break;
 			case ERR_LOGIN_INCORRECT_PASSWORD:

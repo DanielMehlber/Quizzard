@@ -8,13 +8,21 @@ import com.danielmehlber.myui.MyButton;
 import com.danielmehlber.myui.MyLabel;
 import com.danielmehlber.myui.MyPanel;
 
+import main.UserData;
+
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 
+/**
+ * Contains all Profile data in visualized and structured manner
+ * @author danie
+ *
+ */
 public class UIProfile extends MyPanel{
 	
 	private UI ui;
+	private UserData user;
 	
 	public UIProfile(UI ui) {
 		super(ui.getDesign());

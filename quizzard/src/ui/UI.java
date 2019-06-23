@@ -56,6 +56,13 @@ public class UI extends MyFrame{
 		return mainComponent;
 	}
 	
+	/**
+	 * Centeres any kind of container inside another one, maintaining its size
+	 * @param head outher Container
+	 * @param pos inner Container
+	 * @param w centering along x axis
+	 * @param h centering along y axis
+	 */
 	public static void center(Component head, Component pos, boolean w, boolean h) {
 		int x = head.getWidth()/2 - pos.getWidth()/2;
 		int y = head.getHeight()/2 - pos.getHeight()/2;
@@ -65,6 +72,10 @@ public class UI extends MyFrame{
 			pos.setLocation(pos.getX(), y);
 	}
 	
+	/**
+	 * Creates default design of UI
+	 * @return
+	 */
 	private static MyDesign design() {
 		MyDesign d = MyDesign.FOX;
 		d.font = d.font.deriveFont(16f);
