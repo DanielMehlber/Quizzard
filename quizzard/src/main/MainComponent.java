@@ -3,14 +3,18 @@ package main;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import database.Connection;
 import ui.UI;
 
 public class MainComponent {
 
 	UI ui;
+	Connection connection;
 	
 	public MainComponent() {
 		ui = new UI(this);
+		connection = new Connection();
+		connection.connect();
 	}
 	
 	/**
