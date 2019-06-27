@@ -3,6 +3,7 @@ package database;
 import java.sql.*;
 
 import main.Console;
+import main.ErrCode;
 import main.MainComponent;
 
 /**
@@ -12,6 +13,7 @@ import main.MainComponent;
 public class Connection {
 	private java.sql.Connection con;
 	private Statement stm;
+	private ResultSet rs;
 	
 	/**
 	 * Creates class Connection
@@ -59,5 +61,12 @@ public class Connection {
 			Console.error("database", "Connot disconnect", true);
 			e.printStackTrace();
 		}
+	}
+	
+	public ErrCode login (String name, String pw) {
+		ResultSet rs=stm.executeQuery("SELECT ")
+		
+		ErrCode code = ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+		return code;
 	}
 }
