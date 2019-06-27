@@ -28,5 +28,10 @@ public class Task {
 	protected void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	
+	public boolean ready() {
+		return true;
+	}
 
 }

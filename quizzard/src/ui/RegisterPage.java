@@ -19,6 +19,11 @@ import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 import main.Console;
 import main.ErrCode;
 
+/**
+ * Page used for registration
+ * @author mehlber
+ *
+ */
 public class RegisterPage extends MyPage {
 
 	

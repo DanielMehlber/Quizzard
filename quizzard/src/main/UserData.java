@@ -2,7 +2,7 @@ package main;
 
 /**
  * Stores user data. Can update itself using the MainComponent
- * @author danie
+ * @author mehlber
  *
  */
 public class UserData {

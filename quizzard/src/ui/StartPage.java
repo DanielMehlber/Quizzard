@@ -29,6 +29,11 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.Box;
 
+/**
+ * Page used for logins
+ * @author mehlber
+ *
+ */
 public class StartPage extends MyPage{
 
 	private UI ui;
@@ -135,6 +140,8 @@ public class StartPage extends MyPage{
 		btnLogin.addRunnable(login);
 		entryUsername.addRunnable(login);
 		entryPassword.addRunnable(login);
+		
+		System.out.println();
 		
 	}
 }
