@@ -3,10 +3,29 @@ package database;
 import java.sql.*;
 
 import main.Console;
+import main.ErrCode;
+import main.MainComponent;
 
+/**
+ * Connection between program and database
+ * @author warnberger
+ */
 public class Connection {
 	private java.sql.Connection con;
+	private Statement stm;
+	private ResultSet rs;
 	
+	/**
+	 * Creates class Connection
+	 * @param m MainComponent
+	 */
+	public Connection (MainComponent m) {
+		MainComponent main = m;
+	}
+	
+	/**
+	 * Connect the program with SQL database and creates a statement.
+	 */
 	public void connect() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -19,8 +38,35 @@ public class Connection {
 			Console.error("database", "Cannot load driver", true);
 			e.printStackTrace();
 		}
+		
+		try {
+			stm=con.createStatement();
+		} catch (SQLException e) {
+			Console.error("database", "Connot creat statement", true);
+			e.printStackTrace();
+		}
+		
 		Console.info("database", "Connected", false);
 		
 		
+	}
+	
+	/**
+	 * Disconnects the program from the database.
+	 */
+	public void disconnect () {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			Console.error("database", "Connot disconnect", true);
+			e.printStackTrace();
+		}
+	}
+	
+	public ErrCode login (String name, String pw) {
+		ResultSet rs=stm.executeQuery("SELECT ")
+		
+		ErrCode code = ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+		return code;
 	}
 }
