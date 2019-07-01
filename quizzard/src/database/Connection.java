@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import main.Console;
 import main.ErrCode;
@@ -62,11 +63,38 @@ public class Connection {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Login of a Player
+	 * @param name Name of the Player
+	 * @param pw Password of the Player
+	 * @return Code arrors
+	 */
 	public ErrCode login (String name, String pw) {
-		ResultSet rs=stm.executeQuery("SELECT ")
-		
-		ErrCode code = ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+		ArrayList<String> n= new ArrayList<String>();
+		ArrayList<String> p= new ArrayList<String>();
+		ErrCode code = null;
+		//Hashcode
+		//pw=hashcode(pw);
+		try {
+			ResultSet rs=stm.executeQuery("SELECT name FROM q11info1.Player WHERE (name='"+name+"');");
+			while (rs.next()) {
+				n.add(rs.getString("name"));
+			}
+			rs=stm.executeQuery("SELECT password FROM q11info1.Player WHERE (name='"+name+"' AND password='"+pw+"');");
+			while (rs.next()) {
+				p.add(rs.getString("password"));
+			}
+			if(p.size()<=0) {
+				code= ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+				Console.error("databank", "Incorrect password", true);
+			}
+					
+		} catch (SQLException e) {
+			Console.error("databank", "Cannot found Player", true);
+			code=ErrCode.ERR_LOGIN_UNKNOWN_USER;
+			e.printStackTrace();
+		}
+
 		return code;
 	}
 }
