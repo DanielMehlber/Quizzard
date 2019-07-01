@@ -98,14 +98,12 @@ public class Connection {
 		
 		if(code == ErrCode.NULL) {
 			Console.info("login", "User '"+name+"' erfolgreich eingeloggt", false);
-			//TODO: LOGIN SYSTEM
+			//TODO: mainComponent.setUserData(...)
 		}
 
 		return code;
 	}
 	public ErrCode signIn (String name, String pw) {
-		//pw=hashcode(pw);
-		//COUNT
 		ErrCode code=null;
 		
 		//Hannes, bitte nur überprüfen, ob ein nutzername wie der gegebene schon existiert. ~Daniel
