@@ -33,9 +33,8 @@ public class UserData {
 	private int trophies;
 	
 	
-	public UserData(String username, int userid, boolean online, ArrayList<Integer> friends, ArrayList<Integer> games) {
+	public UserData(String username) {
 		this.username = username;
-		this.userid = userid;
 	}
 
 

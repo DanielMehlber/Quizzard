@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import main.Console;
 import main.ErrCode;
 import main.MainComponent;
+import main.UserData;
 
 
 /**
@@ -103,11 +104,16 @@ public class Connection {
 
 		return code;
 	}
+	/**
+	 * Creates a new account and you get logged in.
+	 * @param name Playername
+	 * @param pw Password of the account
+	 * @return Errors
+	 */
 	public ErrCode signIn (String name, String pw) {
 		ErrCode code=null;
 		ResultSet set = null;
 		int id=0;
-		//Hannes, bitte nur überprüfen, ob ein nutzername wie der gegebene schon existiert. ~Daniel
 		try {
 			set=stm.executeQuery("SELECT name FROM q11info1.player WHERE (name='"+name+"');");
 				if (!set.next()) {
@@ -124,6 +130,31 @@ public class Connection {
 		}
 		
 		return code;
+		
+	}
+	
+	private UserData userInformation (String name) {
+		ResultSet set = null;
+		UserData user=new UserData(name, 0);
+		ArrayList<int> a=new ArrayList<int>();
+		try {
+			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (name='"+name+"');");
+			int id=set.getInt("id")
+			user.setUserID(id);
+			user.setTrophies(set.getInt("trophies"));
+			set=stm.executeQuery("SELECT b.id FROM player AS a, player AS b, friends WHERE (a.id=friends.player1id AND b.id=friends.player2id AND a.name='"+name+"');");
+			while (set.next()) {
+				a.add(set.getInt("id"));
+			}
+			user.setFriends(a);
+			user.setGames(a);
+
+			
+		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return null;
 		
 	}
 }
