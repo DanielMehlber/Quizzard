@@ -96,6 +96,9 @@ public class Connection {
 			while (rs.next()) {
 				p.add(rs.getString("password"));
 			}
+			for(String s : p) {
+				System.out.println(s);
+			}
 		} catch(SQLException e) {
 			code= ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
 			Console.error("databank", "Incorrect password", false);
