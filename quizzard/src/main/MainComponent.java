@@ -69,19 +69,24 @@ public class MainComponent {
 	 * @return Error Code
 	 */
 	public ErrCode register(String username, String password, String passwordRepeat) {
+		ErrCode code = ErrCode.NULL;
 		if(username.length() == 0)
-			return ErrCode.ERR_REGISTRATION_USERNAME_EMPTY;
-		if(password.length() == 0)
-			return ErrCode.ERR_REGISTRATION_PASSWORD_EMPTY;
-		
-		if(username.length() > 15)
-			return ErrCode.ERR_REGISTRATION_USERNAME_TOO_LONG;
-		if(!password.equals(passwordRepeat))
-			return ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
+			code = ErrCode.ERR_REGISTRATION_USERNAME_EMPTY;
+		else if(password.length() == 0)
+			code = ErrCode.ERR_REGISTRATION_PASSWORD_EMPTY;
+		else if(username.length() > 15)
+			code = ErrCode.ERR_REGISTRATION_USERNAME_TOO_LONG;
+		else if(!password.equals(passwordRepeat))
+			code = ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
 		
 		String hash = getHash(password); password = null; passwordRepeat = null;
 		
-		//TODO: use given information to create new account, wait for its creation beeing finished and then call login(username, password)
+		if(code == ErrCode.NULL)
+			code = connection.signIn(username, hash);
+		
+		if(code == ErrCode.NULL) 
+			login(username, hash);
+		
 		
 		return ErrCode.NULL;
 	}

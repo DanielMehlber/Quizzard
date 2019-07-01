@@ -103,21 +103,19 @@ public class Connection {
 
 		return code;
 	}
-	public ErrCode signIn (String name, String pw1, String pw2) {
+	public ErrCode signIn (String name, String pw) {
 		//pw=hashcode(pw);
 		//COUNT
 		ErrCode code=null;
-		if (pw1!=pw2) {
-			code=ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
+		
+		//Hannes, bitte nur überprüfen, ob ein nutzername wie der gegebene schon existiert. ~Daniel
+		
+		try {
+			stm.executeQuery("SELECT COUNT (id) FROM q11info1.player");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		else {
-			try {
-				stm.executeQuery("SELECT COUNT (id) FROM q11info1.player");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 		return code;
 		
 	}
