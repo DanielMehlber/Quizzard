@@ -78,22 +78,21 @@ public class Connection {
 			if(rs.next()==false) {
 				code=ErrCode.ERR_LOGIN_UNKNOWN_USER;
 			}
-			
-
-			
-					
+			else {
+				try {
+					rs=stm.executeQuery("SELECT password FROM q11info1.Player WHERE (name='"+name+"' AND password='"+pw+"');");
+					if (rs.next()==false) {
+						code= ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+					}
+				} catch(SQLException e) {
+					Console.error("databank", "Incorrect password", false);
+				}
+			}		
 		} catch (SQLException e) {
 			Console.error("databank", "Cannot found Player", false);
 			e.printStackTrace();
 		}
-		try {
-			rs=stm.executeQuery("SELECT password FROM q11info1.Player WHERE (name='"+name+"' AND password='"+pw+"');");
-			if (rs.next()==false) {
-				code= ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
-			}
-		} catch(SQLException e) {
-			Console.error("databank", "Incorrect password", false);
-		}
+		
 
 		return code;
 	}
