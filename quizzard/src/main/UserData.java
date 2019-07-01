@@ -30,6 +30,8 @@ public class UserData {
 	 */
 	private ArrayList<Integer> games;
 	
+	private int trophies;
+	
 	
 	public UserData(String username, int userid) {
 		this.username = username;
@@ -84,6 +86,16 @@ public class UserData {
 
 	public void setGames(ArrayList<Integer> games) {
 		this.games = games;
+	}
+
+
+	public int getTrophies() {
+		return trophies;
+	}
+
+
+	public void setTrophies(int trophies) {
+		this.trophies = trophies;
 	}
 	
 	

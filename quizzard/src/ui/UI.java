@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
@@ -92,9 +93,8 @@ public class UI extends MyFrame{
 	 */
 	public void home() {
 		setResizable(true);
-		System.out.println(pageHome.getWidth());
 		setSize(pageHome.getSize());
-		changePage(pageHome, MyDirection.WEST);
+		changePage(pageHome, null);
 	}
 	
 	

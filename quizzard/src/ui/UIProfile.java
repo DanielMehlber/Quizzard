@@ -81,5 +81,11 @@ public class UIProfile extends MyPanel{
 		setColor(getDesign().baseColor.lighter(UI.homePagePanelLightnessFactor));
 	}
 	
+	public void setUserData(UserData data) {
+		name.setText(data.getUsername());
+		trophies.setText(String.valueOf(data.getTrophies()));
+		friends.setText(String.valueOf(data.getFriends().size()));
+	}
+	
 	
 }

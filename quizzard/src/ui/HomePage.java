@@ -21,14 +21,14 @@ import javax.swing.BoxLayout;
 public class HomePage extends MyPage{
 	
 	private final UI ui;
-	private final UIGames uiGames;
-	private final UIProfile uiProfile;
+	public final UIGames uiGames;
+	public final UIProfile uiProfile;
 	
 	public HomePage(UI ui) {
 		super(ui.getDesign());
 		this.ui = ui;
 		setLayout(new BorderLayout(0, 0));
-		setSize(1000, 500);
+		setSize(1000, 800);
 		
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);
@@ -69,4 +69,5 @@ public class HomePage extends MyPage{
 		uiGames.addGame(0, "JOIN FOR FREE");
 		
 	}
+	
 }

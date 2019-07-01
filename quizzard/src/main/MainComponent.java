@@ -62,6 +62,7 @@ public class MainComponent {
 		ErrCode code = ErrCode.NULL;// = connection.login(username, password);
 		if(code == ErrCode.NULL) {
 			Console.info("login", "Success", false);
+			ui.pageHome.uiProfile.setUserData(userData);
 			ui.home();
 		}
 		return code;
@@ -129,6 +130,11 @@ public class MainComponent {
 	 */
 	public void windowOnClose() {
 		connection.disconnect();
+	}
+	
+	public void setUserData(UserData userdata) {
+		this.userData = userdata;
+		ui.pageHome.uiProfile.setUserData(userdata);
 	}
 	
 	
