@@ -97,4 +97,17 @@ public class Connection {
 
 		return code;
 	}
+	public ErrCode signIn (String name, String pw) {
+		//pw=hashcode(pw);
+		//COUNT
+		try {
+			
+			stm.executeUpdate("INSERT INTO q11info1.Player (id, name, password, trophies, playedGames, online) VALUES (3,'"+name+"','"+pw+"', 0,0,'0');");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }
