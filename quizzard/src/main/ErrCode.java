@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * Error Codes used in the Quizzard Project
+ * @author mehlber
+ *
+ */
 public enum ErrCode {
 	NULL,
 	ERR_LOGIN_UNKNOWN_USER, ERR_LOGIN_INCORRECT_PASSWORD,

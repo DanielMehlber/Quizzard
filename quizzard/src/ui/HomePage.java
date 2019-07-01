@@ -24,9 +24,6 @@ public class HomePage extends MyPage{
 	private final UIGames uiGames;
 	private final UIProfile uiProfile;
 	
-	/**
-	 * @param ui
-	 */
 	public HomePage(UI ui) {
 		super(ui.getDesign());
 		this.ui = ui;

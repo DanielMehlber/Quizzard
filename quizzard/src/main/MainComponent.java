@@ -12,6 +12,11 @@ import tasks.TaskManager;
 import tasks.TimedTask;
 import ui.UI;
 
+/**
+ * Connects all components and does the work inbetween
+ * @author mehlber
+ *
+ */
 public class MainComponent {
 
 	/**
@@ -39,7 +44,7 @@ public class MainComponent {
 	
 	/**
 	 * Invokes game
-	 * @param args
+	 * @param args console args
 	 */
 	public static void main(String[]args) {
 		Console.info("main", "game started", false);

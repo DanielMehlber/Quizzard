@@ -29,9 +29,8 @@ public class RegisterPage extends MyPage {
 	
 	private UI ui;
 	private MyPage contentHolder;
-	/**
-	 * Create the panel.
-	 */
+	
+	
 	public RegisterPage(UI ui) {
 		super(ui.getDesign());
 		this.ui = ui;

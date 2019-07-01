@@ -78,7 +78,7 @@ public class UI extends MyFrame{
 	
 	/**
 	 * Creates default design of UI
-	 * @return
+	 * @return generated static design
 	 */
 	private static MyDesign design() {
 		MyDesign d = MyDesign.FOX;
