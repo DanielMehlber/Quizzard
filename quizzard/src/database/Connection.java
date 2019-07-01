@@ -99,7 +99,7 @@ public class Connection {
 		
 		if(code == ErrCode.NULL) {
 			Console.info("login", "User '"+name+"' erfolgreich eingeloggt", false);
-			//TODO: mainComponent.setUserData(...)
+			mainComponent.setUserData(userInformation(name));
 		}
 
 		return code;
@@ -132,21 +132,30 @@ public class Connection {
 		return code;
 		
 	}
-	
+	/**
+	 * Creates UserData.
+	 * @param name Name of the user
+	 * @return UserData
+	 */
 	private UserData userInformation (String name) {
 		ResultSet set = null;
-		UserData user=new UserData(name, 0);
-		ArrayList<int> a=new ArrayList<int>();
+		UserData user=new UserData(name);
+		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
+			//Abfragen müssen noch getestet werden. Jedoch habe ich zuhause leider keine Möglichkeit eine Datenbank zu erstellen.
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (name='"+name+"');");
-			int id=set.getInt("id")
+			int id=set.getInt("id");
 			user.setUserID(id);
 			user.setTrophies(set.getInt("trophies"));
 			set=stm.executeQuery("SELECT b.id FROM player AS a, player AS b, friends WHERE (a.id=friends.player1id AND b.id=friends.player2id AND a.name='"+name+"');");
 			while (set.next()) {
-				a.add(set.getInt("id"));
+				a.add((Integer) set.getInt("id"));
 			}
 			user.setFriends(a);
+			set=stm.executeQuery("SELECT b.id FROM player AS a, game AS b, playergame WHERE (a.id=playergame.playerid AND b.id=playergame.gameid AND a.name='"+name+"');");
+			while (set.next()) {
+				a.add((Integer) set.getInt("id"));
+			}
 			user.setGames(a);
 
 			
@@ -154,7 +163,7 @@ public class Connection {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		return null;
+		return user;
 		
 	}
 }
