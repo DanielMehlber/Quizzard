@@ -14,8 +14,18 @@ import ui.UI;
 
 public class MainComponent {
 
+	/**
+	 * UI Component
+	 */
 	private final UI ui;
+	/**
+	 * Connection- and Databasecomponent
+	 */
 	private final Connection connection;
+	/**
+	 * Data of current user
+	 */
+	public UserData userData;
 	
 	public MainComponent() {
 		ui = new UI(this);
@@ -76,6 +86,7 @@ public class MainComponent {
 		return ErrCode.NULL;
 	}
 	
+	
 	/**
 	 * Converts any String to unreversible Hash Code
 	 * @param passwordToHash The password to be converted
@@ -106,7 +117,7 @@ public class MainComponent {
 	 * Defines what happens after window closes or player decides to exit program
 	 */
 	public void windowOnClose() {
-		//TODO: Logout Database
+		connection.disconnect();
 	}
 	
 	

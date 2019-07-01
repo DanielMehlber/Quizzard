@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 /**
  * Stores user data. Can update itself using the MainComponent
  * @author mehlber
@@ -7,15 +9,31 @@ package main;
  */
 public class UserData {
 	
+	/**
+	 * Username of User
+	 */
 	private String username;
+	/**
+	 * Tells if user is online
+	 */
 	private boolean online;
+	/**
+	 * id of user. Is used in database
+	 */
 	private int userid;
-	private int[] friends;
-	private int[] games;
+	/**
+	 * Id list of users friends
+	 */
+	private ArrayList<Integer> friends;
+	/**
+	 * Id list of users games
+	 */
+	private ArrayList<Integer> games;
 	
 	
-	public UserData() {
-		
+	public UserData(String username, int userid) {
+		this.username = username;
+		this.userid = userid;
 	}
 
 
@@ -49,24 +67,25 @@ public class UserData {
 	}
 
 
-	public int[] getFriends() {
+	public ArrayList<Integer> getFriends() {
 		return friends;
 	}
 
 
-	public void setFriends(int[] friends) {
+	public void setFriends(ArrayList<Integer> friends) {
 		this.friends = friends;
 	}
 
 
-	public int[] getGames() {
+	public ArrayList<Integer> getGames() {
 		return games;
 	}
 
 
-	public void setGames(int[] games) {
+	public void setGames(ArrayList<Integer> games) {
 		this.games = games;
 	}
+	
 	
 	
 	
