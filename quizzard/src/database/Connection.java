@@ -81,6 +81,9 @@ public class Connection {
 				n.add(rs.getString("name"));
 			}
 			
+			for(String s : n) {
+				System.out.println(s);
+			}
 			
 					
 		} catch (SQLException e) {
