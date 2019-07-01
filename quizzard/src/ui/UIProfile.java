@@ -16,7 +16,7 @@ import javax.swing.JButton;
 
 /**
  * Contains all Profile data in visualized and structured manner
- * @author danie
+ * @author mehlber
  *
  */
 public class UIProfile extends MyPanel{

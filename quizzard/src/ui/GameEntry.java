@@ -9,6 +9,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+/**
+ * Used on HomePage
+ * @author mehlber
+ *
+ */
 public class GameEntry extends MyPanel{
 
 	private String name;

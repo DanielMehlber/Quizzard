@@ -41,7 +41,7 @@ import javax.imageio.ImageIO;
 import javax.swing.Box;
 
 /**
- * Page used for logins
+ * Page used for login
  * @author mehlber
  *
  */

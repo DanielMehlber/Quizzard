@@ -14,6 +14,11 @@ import javax.swing.border.EmptyBorder;
 import com.danielmehlber.myui.MyDesign;
 import com.danielmehlber.myui.MyPanel;
 
+/**
+ * Panel displaying running games.
+ * @author mehlber
+ *
+ */
 public class UIGames extends MyPanel{
 	
 	private JScrollPane scrollPane;

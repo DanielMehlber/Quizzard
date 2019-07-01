@@ -14,6 +14,11 @@ import com.danielmehlber.myui.MySyncTask;
 
 import main.MainComponent;
 
+/**
+ * UI head class
+ * @author mehlber
+ *
+ */
 public class UI extends MyFrame{
 
 	MainComponent mainComponent;
@@ -89,7 +94,7 @@ public class UI extends MyFrame{
 	}
 	
 	/**
-	 * Home Page mode
+	 * Changes to home page
 	 */
 	public void home() {
 		setResizable(true);
