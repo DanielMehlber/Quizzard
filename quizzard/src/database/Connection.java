@@ -1,11 +1,13 @@
 package database;
 
+import java.beans.FeatureDescriptor;
 import java.sql.*;
 import java.util.ArrayList;
 
 import main.Console;
 import main.ErrCode;
 import main.MainComponent;
+
 
 /**
  * Connection between program and database
@@ -15,6 +17,9 @@ public class Connection {
 	private java.sql.Connection con;
 	private Statement stm;
 	private ResultSet rs;
+	
+	private static final String fetchUserByUsername = "SELECT * FROM q11info1.player WHERE";
+
 	
 	/**
 	 * Creates class Connection
@@ -71,27 +76,30 @@ public class Connection {
 	 */
 	public ErrCode login (String name, String pw) {
 		ErrCode code = ErrCode.NULL;
-		//Hashcode
-		//pw=hashcode(pw);
+		ResultSet set = null;
+		ArrayList<String> a=new ArrayList<String> ();
 		try {
-			ResultSet rs=stm.executeQuery("SELECT name FROM q11info1.Player WHERE (name='"+name+"');");
-			if(rs.next()==false) {
-				code=ErrCode.ERR_LOGIN_UNKNOWN_USER;
+			set = stm.executeQuery(fetchUserByUsername+"(name='"+name+"');");
+			if(set.next() == false) {
+				code = ErrCode.ERR_LOGIN_UNKNOWN_USER;
+				while(set.next()) {
+					a.add(set.getString("password"));
+				}
 			}
 			else {
-				try {
-					rs=stm.executeQuery("SELECT password FROM q11info1.Player WHERE (name='"+name+"' AND password='"+pw+"');");
-					if (rs.next()==false) {
-						code= ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+				String p=null;
+				while (a.size()>0) {
+					p=a.get(0);
+					if (p==pw) {
+					
 					}
-				} catch(SQLException e) {
-					Console.error("databank", "Incorrect password", false);
 				}
-			}		
+			}
 		} catch (SQLException e) {
-			Console.error("databank", "Cannot found Player", false);
+			Console.error("login", "Some Error occured", false);
 			e.printStackTrace();
 		}
+		
 		
 
 		return code;
