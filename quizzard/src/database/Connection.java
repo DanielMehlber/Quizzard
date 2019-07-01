@@ -72,7 +72,7 @@ public class Connection {
 	public ErrCode login (String name, String pw) {
 		ArrayList<String> n= new ArrayList<String>();
 		ArrayList<String> p= new ArrayList<String>();
-		ErrCode code = null;
+		ErrCode code = ErrCode.NULL;
 		//Hashcode
 		//pw=hashcode(pw);
 		try {
