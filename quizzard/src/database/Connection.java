@@ -18,7 +18,11 @@ public class Connection {
 	private Statement stm;
 	private ResultSet rs;
 	
-	private static final String fetchUserByUsername = "SELECT * FROM q11info1.player WHERE";
+	private MainComponent mainComponent;
+	
+	private static final String SPIELER_USERNAME = "username";
+	private static final String SPIELER_PW = "password";
+	
 
 	
 	/**
@@ -26,7 +30,7 @@ public class Connection {
 	 * @param m MainComponent
 	 */
 	public Connection (MainComponent m) {
-		MainComponent main = m;
+		mainComponent = m;
 	}
 	
 	/**
@@ -77,30 +81,25 @@ public class Connection {
 	public ErrCode login (String name, String pw) {
 		ErrCode code = ErrCode.NULL;
 		ResultSet set = null;
-		ArrayList<String> a=new ArrayList<String> ();
 		try {
-			set = stm.executeQuery(fetchUserByUsername+"(name='"+name+"');");
+			set = stm.executeQuery("SELECT * FROM q11info1.player WHERE name='"+name+"';");
 			if(set.next() == false) {
 				code = ErrCode.ERR_LOGIN_UNKNOWN_USER;
-				while(set.next()) {
-					a.add(set.getString("password"));
-				}
-			}
-			else {
-				String p=null;
-				while (a.size()>0) {
-					p=a.get(0);
-					if (p==pw) {
-					
-					}
-				}
+			}else {
+				System.out.println(pw);
+				System.out.println(set.getString(SPIELER_PW));
+				if(!set.getString(SPIELER_PW).equals(pw))
+					code = ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
 			}
 		} catch (SQLException e) {
 			Console.error("login", "Some Error occured", false);
 			e.printStackTrace();
 		}
 		
-		
+		if(code == ErrCode.NULL) {
+			Console.info("login", "User '"+name+"' erfolgreich eingeloggt", false);
+			//TODO: LOGIN SYSTEM
+		}
 
 		return code;
 	}

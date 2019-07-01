@@ -109,24 +109,6 @@ public class MainComponent {
 		//TODO: Logout Database
 	}
 	
-	public static String[] result(ResultSet set) {
-		if(set == null)
-			return new String[0];
-		
-		String[] r = null;
-		try {
-			ResultSetMetaData meta = set.getMetaData();
-			int count = meta.getColumnCount();
-			for(int i = 0; i < count; i++) {
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return r;
-	} 
 	
 	
 
