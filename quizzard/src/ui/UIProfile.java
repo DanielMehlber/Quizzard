@@ -84,7 +84,7 @@ public class UIProfile extends MyPanel{
 	public void setUserData(UserData data) {
 		name.setText(data.getUsername());
 		trophies.setText(String.valueOf(data.getTrophies()));
-		friends.setText(String.valueOf(data.getFriends().size()));
+		//friends.setText(String.valueOf(data.getFriends().size()));
 	}
 	
 	

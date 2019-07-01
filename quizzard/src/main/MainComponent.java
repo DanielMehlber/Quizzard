@@ -59,7 +59,7 @@ public class MainComponent {
 	 * @return Error Code
 	 */
 	public ErrCode login(String username, String password) {
-		ErrCode code = ErrCode.NULL;// = connection.login(username, password);
+		ErrCode code = connection.login(username, password);
 		if(code == ErrCode.NULL) {
 			Console.info("login", "Success", false);
 			ui.pageHome.uiProfile.setUserData(userData);
@@ -137,7 +137,9 @@ public class MainComponent {
 		ui.pageHome.uiProfile.setUserData(userdata);
 	}
 	
-	
+	public void updateData() {
+		
+	}
 	
 
 }

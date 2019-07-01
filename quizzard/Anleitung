@@ -1,0 +1,10 @@
+Anleitung
+
+Details zur Verbindung können in database/Connection.java an der Markierten Stelle geändert werden
+
+Bisher funktioniert die Registrierung und der Login ohne Probleme.
+
+Die HauptSeite ("HomePage.java") bauen wir gerade um.
+
+
+

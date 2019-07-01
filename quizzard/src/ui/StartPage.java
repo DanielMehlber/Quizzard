@@ -4,16 +4,20 @@ import javax.swing.JPanel;
 
 import com.danielmehlber.myui.MyButton;
 import com.danielmehlber.myui.MyDirection;
+import com.danielmehlber.myui.MyMedia;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 
 import main.Console;
 import main.ErrCode;
+import sun.rmi.log.LogOutputStream;
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.CardLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -23,11 +27,17 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Component;
+
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 
 /**
@@ -58,15 +68,16 @@ public class StartPage extends MyPage{
 		int txtDistanceHorizontal = 130;
 		int yDistance = 30;
 		
-		JPanel panel = new JPanel();
-		sl_contentHolder.putConstraint(SpringLayout.NORTH, panel, yDistance, SpringLayout.NORTH, contentHolder);
-		sl_contentHolder.putConstraint(SpringLayout.WEST, panel, 260, SpringLayout.WEST, contentHolder);
-		sl_contentHolder.putConstraint(SpringLayout.SOUTH, panel, -287, SpringLayout.SOUTH, contentHolder);
-		sl_contentHolder.putConstraint(SpringLayout.EAST, panel, -260, SpringLayout.EAST, contentHolder);
-		contentHolder.add(panel);
+		
+		Logo picture = new Logo();
+		sl_contentHolder.putConstraint(SpringLayout.NORTH, picture, yDistance, SpringLayout.NORTH, contentHolder);
+		sl_contentHolder.putConstraint(SpringLayout.WEST, picture, 260, SpringLayout.WEST, contentHolder);
+		sl_contentHolder.putConstraint(SpringLayout.SOUTH, picture, -287, SpringLayout.SOUTH, contentHolder);
+		sl_contentHolder.putConstraint(SpringLayout.EAST, picture, -260, SpringLayout.EAST, contentHolder);
+		contentHolder.add(picture);
 		
 		entryUsername = new MyTextEntry(ui.getDesign());
-		sl_contentHolder.putConstraint(SpringLayout.NORTH, entryUsername, yDistance, SpringLayout.SOUTH, panel);
+		sl_contentHolder.putConstraint(SpringLayout.NORTH, entryUsername, yDistance, SpringLayout.SOUTH, picture);
 		sl_contentHolder.putConstraint(SpringLayout.WEST, entryUsername, txtDistanceHorizontal, SpringLayout.WEST, contentHolder);
 		sl_contentHolder.putConstraint(SpringLayout.EAST, entryUsername, -txtDistanceHorizontal, SpringLayout.EAST, contentHolder);
 		contentHolder.add(entryUsername);
@@ -120,7 +131,6 @@ public class StartPage extends MyPage{
 		});
 		
 		entryUsername.setSubtext("Verrate mir deinen Namen...");
-		//entryUsername.setFont(entryUsername.getFont().deriveFont(20f)); //TODO: MyTextEntry.setTextSize
 		entryPassword.setSubtext("... und das Passwort, dann darfst du rein.");
 		
 		login = () -> {

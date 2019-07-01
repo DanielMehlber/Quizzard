@@ -40,7 +40,7 @@ public class Connection {
 	public void connect() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://unterricht01.gym-friedberg.de/q11", "q11info1", "q11info1");
+			con = DriverManager.getConnection("jdbc:postgresql://unterricht01.gym-friedberg.de/q11", "q11info1", "q11info1"); // Daten hier ändern
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			Console.error("database", "Cannot connect to database", true);
@@ -86,11 +86,14 @@ public class Connection {
 			set = stm.executeQuery("SELECT * FROM q11info1.player WHERE name='"+name+"';");
 			if(set.next() == false) {
 				code = ErrCode.ERR_LOGIN_UNKNOWN_USER;
+				Console.error("login", "Unknown User '"+name+"'", false);
 			}else {
 				System.out.println(pw);
 				System.out.println(set.getString(SPIELER_PW));
-				if(!set.getString(SPIELER_PW).equals(pw))
+				if(!set.getString(SPIELER_PW).equals(pw)) {
 					code = ErrCode.ERR_LOGIN_INCORRECT_PASSWORD;
+					Console.error("login", "Incorrect password", false);
+				}
 			}
 		} catch (SQLException e) {
 			Console.error("login", "Some Error occured", false);
@@ -117,13 +120,12 @@ public class Connection {
 		try {
 			set=stm.executeQuery("SELECT name FROM q11info1.player WHERE (name='"+name+"');");
 				if (!set.next()) {
-					set = stm.executeQuery("SELECT * FROM q11info1.player");
-					id = set.getInt(1)+1;
-					stm.executeUpdate("INSERT INTO q11info1.player (id, name, password, trophies, playedgames, online) VALUES ("+id+", '"+name+"', '"+pw+"', 0, 0, 0);");
+					stm.executeUpdate("INSERT INTO q11info1.player (name, password, trophies, playedgames, online) VALUES ('"+name+"', '"+pw+"', 0, 0, TRUE);");
 					login(name, pw);
 				}
 				else {
 					code=ErrCode.ERR_REGISTRATION_REDUNDANT_USERNAME;
+					Console.error("signin", "Username already exists", false);
 				}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -142,21 +144,13 @@ public class Connection {
 		UserData user=new UserData(name);
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
-			//Abfragen müssen noch getestet werden. Jedoch habe ich zuhause leider keine Möglichkeit eine Datenbank zu erstellen.
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (name='"+name+"');");
+			set.next();
 			int id=set.getInt("id");
 			user.setUserID(id);
 			user.setTrophies(set.getInt("trophies"));
-			set=stm.executeQuery("SELECT b.id FROM player AS a, player AS b, friends WHERE (a.id=friends.player1id AND b.id=friends.player2id AND a.name='"+name+"');");
-			while (set.next()) {
-				a.add((Integer) set.getInt("id"));
-			}
-			user.setFriends(a);
-			set=stm.executeQuery("SELECT b.id FROM player AS a, game AS b, playergame WHERE (a.id=playergame.playerid AND b.id=playergame.gameid AND a.name='"+name+"');");
-			while (set.next()) {
-				a.add((Integer) set.getInt("id"));
-			}
-			user.setGames(a);
+			//TODO: Fetch friends
+			//TODO: Fetch Games
 
 			
 		} catch (SQLException e) {
