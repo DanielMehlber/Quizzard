@@ -8,6 +8,7 @@ import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 
+import main.Console;
 import main.ErrCode;
 
 import java.awt.GridLayout;
@@ -131,7 +132,10 @@ public class StartPage extends MyPage{
 			case ERR_LOGIN_INCORRECT_PASSWORD:
 				entryPassword.error("Nur mut dem richtigen Passwort kommst du rein!", 3f);
 				break;
+			case NULL:
+				break;
 			default:
+				Console.error("login", "UNKNOWN ERRCODE", false);
 				break;
 			}
 			

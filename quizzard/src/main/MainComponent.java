@@ -2,6 +2,9 @@ package main;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 import database.Connection;
 import tasks.Task;
@@ -41,10 +44,11 @@ public class MainComponent {
 	 * @return Error Code
 	 */
 	public ErrCode login(String username, String password) {
-		//TODO: Check if username exists
-		//TODO: Check if hashcode matches
-		//TODO: Set Environment
-		return ErrCode.ERR_LOGIN_UNKNOWN_USER;
+		ErrCode code = connection.login(username, password);
+		if(code == ErrCode.NULL) {
+			Console.info("login", "Success", false);
+		}
+		return code;
 	}
 	
 	/**
@@ -104,6 +108,25 @@ public class MainComponent {
 	public void windowOnClose() {
 		//TODO: Logout Database
 	}
+	
+	public static String[] result(ResultSet set) {
+		if(set == null)
+			return new String[0];
+		
+		String[] r = null;
+		try {
+			ResultSetMetaData meta = set.getMetaData();
+			int count = meta.getColumnCount();
+			for(int i = 0; i < count; i++) {
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return r;
+	} 
 	
 	
 

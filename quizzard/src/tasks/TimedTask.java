@@ -5,6 +5,12 @@ public class TimedTask extends Task{
 	private float repeatAfterSeconds;
 	private float last = 0;
 	
+	/**
+	 * Creates Task that is timed
+	 * @param runnable Runnable
+	 * @param threading Threading
+	 * @param repeat Repeat
+	 */
 	public TimedTask(Runnable runnable, boolean threading, float repeat) {
 		super(runnable, threading);
 	}
