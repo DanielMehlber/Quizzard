@@ -105,11 +105,20 @@ public class Connection {
 	}
 	public ErrCode signIn (String name, String pw) {
 		ErrCode code=null;
-		
+		ResultSet set = null;
+		int id=0;
 		//Hannes, bitte nur überprüfen, ob ein nutzername wie der gegebene schon existiert. ~Daniel
-		
 		try {
-			stm.executeQuery("SELECT COUNT (id) FROM q11info1.player");
+			set=stm.executeQuery("SELECT name FROM q11info1.player WHERE (name='"+name+"');");
+				if (!set.next()) {
+					set = stm.executeQuery("SELECT * FROM q11info1.player");
+					id = set.getInt(1)+1;
+					stm.executeUpdate("INSERT INTO q11info1.player (id, name, password, trophies, playedgames, online) VALUES ("+id+", '"+name+"', '"+pw+"', 0, 0, 0);");
+					login(name, pw);
+				}
+				else {
+					code=ErrCode.ERR_REGISTRATION_REDUNDANT_USERNAME;
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
