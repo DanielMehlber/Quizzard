@@ -28,6 +28,7 @@ public class HomePage extends MyPage{
 		super(ui.getDesign());
 		this.ui = ui;
 		setLayout(new BorderLayout(0, 0));
+		setSize(1000, 500);
 		
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);

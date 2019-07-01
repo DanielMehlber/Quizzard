@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyDesign;
+import com.danielmehlber.myui.MyDirection;
 import com.danielmehlber.myui.MyFrame;
 import com.danielmehlber.myui.MySyncTask;
 
@@ -53,7 +54,7 @@ public class UI extends MyFrame{
 				MySyncTask.sync(30);
 			}
 			
-		}).start();;
+		});
 	}
 	
 	public MainComponent getMainComponent() {
@@ -84,6 +85,16 @@ public class UI extends MyFrame{
 		MyDesign d = MyDesign.FOX;
 		d.font = d.font.deriveFont(16f);
 		return d;
+	}
+	
+	/**
+	 * Home Page mode
+	 */
+	public void home() {
+		setResizable(true);
+		System.out.println(pageHome.getWidth());
+		setSize(pageHome.getSize());
+		changePage(pageHome, MyDirection.WEST);
 	}
 	
 	

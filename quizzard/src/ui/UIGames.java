@@ -1,26 +1,18 @@
 package ui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 
 import com.danielmehlber.myui.MyDesign;
 import com.danielmehlber.myui.MyPanel;
-import java.awt.BorderLayout;
-import java.awt.ScrollPane;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.ScrollPaneConstants;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.SpringLayout;
-import javax.swing.border.EmptyBorder;
 
 public class UIGames extends MyPanel{
 	
