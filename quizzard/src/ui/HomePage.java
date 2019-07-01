@@ -13,17 +13,22 @@ import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+/**
+ * Contains all UI Elements
+ * @author mehlber
+ *
+ */
 public class HomePage extends MyPage{
 	
-	private UI ui;
-	private UIGames uiGames;
-	private UIProfile uiProfile;
+	private final UI ui;
+	private final UIGames uiGames;
+	private final UIProfile uiProfile;
 	
 	/**
 	 * @param ui
 	 */
 	public HomePage(UI ui) {
-		//super(ui.getDesign());
+		super(ui.getDesign());
 		this.ui = ui;
 		setLayout(new BorderLayout(0, 0));
 		

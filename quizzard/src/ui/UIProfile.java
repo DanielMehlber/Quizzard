@@ -24,6 +24,13 @@ public class UIProfile extends MyPanel{
 	private UI ui;
 	private UserData user;
 	
+	MyLabel name;
+	MyLabel trophies;
+	MyLabel gameCount;
+	MyLabel recentGamesCount;
+	MyLabel friends;
+	MyButton btnEinstellungen;
+	
 	public UIProfile(UI ui) {
 		super(ui.getDesign());
 		this.ui = ui;
@@ -38,33 +45,41 @@ public class UIProfile extends MyPanel{
 		picture.setRoundness(picture.getWidth());
 		picture.setTitled(false);
 		
-		MyLabel name = new MyLabel(getDesign());
+		name = new MyLabel(getDesign());
 		name.setBounds(106, 32, 182, 22);
 		add(name);
 		name.setText("NAME");
 		
-		JLabel trophies = new JLabel("999");
+		trophies = new MyLabel(getDesign());
 		trophies.setBounds(30, 96, 64, 22);
 		trophies.setHorizontalAlignment(SwingConstants.CENTER);
 		add(trophies);
+		trophies.setText("999");
 		
-		MyLabel gameCount = new MyLabel(getDesign());
+		gameCount = new MyLabel(getDesign());
 		gameCount.setBounds(27, 141, 248, 22);
 		add(gameCount);
 		gameCount.setText("Gespielte Spiele: K/A");
 		
-		MyLabel recentGamesCount = new MyLabel(getDesign());
+		recentGamesCount = new MyLabel(getDesign());
 		recentGamesCount.setBounds(27, 164, 248, 22);
 		add(recentGamesCount);
 		recentGamesCount.setText("Gespielte Spiele: K/A");
 		
-		MyLabel friends = new MyLabel(getDesign());
+		friends = new MyLabel(getDesign());
 		friends.setBounds(27, 188, 248, 22);
 		add(friends);
 		friends.setText("Freunde:");
 		
-		MyButton btnEinstellungen = new MyButton(ui.getDesign(), "Einstellungen");
+		btnEinstellungen = new MyButton(ui.getDesign(), "Einstellungen");
 		btnEinstellungen.setBounds(163, 255, 125, 31);
 		add(btnEinstellungen);
 	}
+	
+	@Override
+	public void applyDesign() {
+		setColor(getDesign().baseColor.lighter(UI.homePagePanelLightnessFactor));
+	}
+	
+	
 }

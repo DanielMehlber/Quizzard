@@ -49,6 +49,11 @@ public class UIGames extends MyPanel{
 		
 	}
 	
+	/**
+	 * Adds Game to ui
+	 * @param id ID
+	 * @param name Name
+	 */
 	public void addGame(int id, String name) {
 		GameEntry ge = new GameEntry(ui, id, name);
 		ge.setLocation(0, (int)(gameEntries.size()*ge.getHeight()*1.05));
@@ -57,9 +62,13 @@ public class UIGames extends MyPanel{
 		scrollPane.revalidate();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		contentPane.setPreferredSize(new Dimension(200, ge.getHeight() * gameEntries.size()));
-		System.out.println(contentPane.getHeight());
 	}
 	
+	/**
+	 * Returns Game with ID
+	 * @param id ID
+	 * @return Game
+	 */
 	public GameEntry getGame(int id) {
 		GameEntry r = null;
 		for(GameEntry e : gameEntries) {
@@ -73,15 +82,18 @@ public class UIGames extends MyPanel{
 	
 	@Override
 	public void applyDesign() {
-		if(contentPane == null)
-			return;
 		MyDesign design = getDesign();
-		scrollPane.setBackground(design.baseColor);
-		contentPane.setBackground(design.baseColor);
-		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-		verticalScrollBar.setBackground(design.baseColor);
-		verticalScrollBar.setForeground(design.accentColor);
-		verticalScrollBar.setBorder(new EmptyBorder(getInsets()));
+		if(contentPane != null)
+			contentPane.setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
+		if(scrollPane != null) {
+			scrollPane.setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
+			JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+			verticalScrollBar.setBackground(design.baseColor);
+			verticalScrollBar.setForeground(design.accentColor);
+			verticalScrollBar.setBorder(new EmptyBorder(getInsets()));
+		}else
+			
+		setColor(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
 	}
 
 }

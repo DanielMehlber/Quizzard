@@ -17,10 +17,11 @@ public class UI extends MyFrame{
 	MainComponent mainComponent;
 	
 	//Pages
-	public StartPage pageStart;
-	public RegisterPage pageRegister;
-	public HomePage pageHome;
-	public static float pageChangeSpeedFac = 4f;
+	public final StartPage pageStart;
+	public final RegisterPage pageRegister;
+	public final HomePage pageHome;
+	public static final float pageChangeSpeedFac = 4f;
+	public static final int homePagePanelLightnessFactor = 30;
 	
 	public UI(MainComponent mc) {
 		super(design());
@@ -29,7 +30,10 @@ public class UI extends MyFrame{
 		setTitle("Quizzard");
 		setResizable(false);
 		
-		doOnClose(() -> setTitle("Auf Wiedersehen"));
+		doOnClose(() -> {
+			setTitle("Auf Wiedersehen");
+			mainComponent.windowOnClose();
+		});
 		
 		pageStart = new StartPage(this);
 		pageRegister = new RegisterPage(this);
@@ -81,5 +85,7 @@ public class UI extends MyFrame{
 		d.font = d.font.deriveFont(16f);
 		return d;
 	}
+	
+	
 
 }

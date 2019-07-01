@@ -4,17 +4,24 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import database.Connection;
+import tasks.Task;
+import tasks.TaskManager;
+import tasks.TimedTask;
 import ui.UI;
 
 public class MainComponent {
 
-	UI ui;
-	Connection connection;
+	private final UI ui;
+	private final Connection connection;
 	
 	public MainComponent() {
 		ui = new UI(this);
 		connection = new Connection(this);
 		connection.connect();
+		TaskManager t = new TaskManager(60);
+		TimedTask t0 = new TimedTask(() -> System.out.println("TASK"), false, 1f);
+		t.add(t0);
+		t.start();
 	}
 	
 	/**
@@ -89,6 +96,13 @@ public class MainComponent {
             e.printStackTrace();
         }
         return generatedPassword;
+	}
+	
+	/**
+	 * Defines what happens after window closes or player decides to exit program
+	 */
+	public void windowOnClose() {
+		//TODO: Logout Database
 	}
 	
 	
