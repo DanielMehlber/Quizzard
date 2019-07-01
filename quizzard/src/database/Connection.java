@@ -103,17 +103,17 @@ public class Connection {
 
 		return code;
 	}
-	public ErrCode signIn (String name, String pw) {
+	public ErrCode signIn (String name, String pw1, String pw2) {
 		//pw=hashcode(pw);
 		//COUNT
-		try {
-			
-			stm.executeUpdate("INSERT INTO q11info1.Player (id, name, password, trophies, playedGames, online) VALUES (3,'"+name+"','"+pw+"', 0,0,'0');");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ErrCode code=null;
+		if (pw1!=pw2) {
+			code=ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
 		}
-		return null;
+		else {
+			stm.executeQuery("SELECT COUNT (id) FROM q11info1.player")
+		}
+		return code;
 		
 	}
 }
