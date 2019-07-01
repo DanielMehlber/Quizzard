@@ -111,7 +111,12 @@ public class Connection {
 			code=ErrCode.ERR_REGISTRATION_PASSWORDS_NOT_MATCHING;
 		}
 		else {
-			stm.executeQuery("SELECT COUNT (id) FROM q11info1.player")
+			try {
+				stm.executeQuery("SELECT COUNT (id) FROM q11info1.player");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return code;
 		
