@@ -13,7 +13,7 @@ public class MainComponent {
 	
 	public MainComponent() {
 		ui = new UI(this);
-		connection = new Connection();
+		connection = new Connection(this);
 		connection.connect();
 	}
 	
