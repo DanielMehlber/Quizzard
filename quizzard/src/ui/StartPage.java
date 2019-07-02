@@ -11,7 +11,6 @@ import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 
 import main.Console;
 import main.ErrCode;
-import sun.rmi.log.LogOutputStream;
 
 import java.awt.GridLayout;
 import java.awt.Image;
