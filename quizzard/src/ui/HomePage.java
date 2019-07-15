@@ -23,6 +23,7 @@ public class HomePage extends MyPage{
 	private final UI ui;
 	public final UIGames uiGames;
 	public final UIProfile uiProfile;
+	public final UIGame uiGame;
 	
 	public HomePage(UI ui) {
 		super(ui.getDesign());
@@ -32,6 +33,7 @@ public class HomePage extends MyPage{
 		
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);
+		uiGame = new UIGame(ui);
 		
 		JPanel topPanel = new JPanel();
 		add(topPanel, BorderLayout.NORTH);
@@ -40,7 +42,7 @@ public class HomePage extends MyPage{
 		JPanel leftPanel = new JPanel();
 		add(leftPanel, BorderLayout.WEST);
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		leftPanel.setPreferredSize(new Dimension(200, 0));
+		leftPanel.setPreferredSize(new Dimension(300, 0));
 		
 		JPanel uiSpieleHolder = new JPanel();
 		leftPanel.add(uiSpieleHolder);
@@ -49,6 +51,8 @@ public class HomePage extends MyPage{
 		
 		JPanel uiSpielHolder = new JPanel();
 		leftPanel.add(uiSpielHolder);
+		uiSpielHolder.setLayout(new BorderLayout());
+		uiSpielHolder.add(uiGame, BorderLayout.CENTER);
 		
 		JPanel rightPanel = new JPanel();
 		add(rightPanel, BorderLayout.EAST);

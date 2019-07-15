@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import database.Connection;
 import tasks.Task;
@@ -139,6 +140,22 @@ public class MainComponent {
 	
 	public void updateData() {
 		
+	}
+	
+	public LinkedList<Notification> refreshNotifcations() {
+		
+	}
+	
+	public UserData refreshProfile() {
+		return null;
+	}
+	
+	public GameData[] refreshGames() {
+		return null;
+	}
+	
+	public GameData fetchGameData(int id) {
+		return null;
 	}
 	
 
