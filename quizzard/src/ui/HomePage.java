@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import com.danielmehlber.myui.MyPage;
+
+import main.UserData;
+
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
@@ -19,6 +22,7 @@ public class HomePage extends MyPage{
 	public final UIGames uiGames;
 	public final UIProfile uiProfile;
 	public final UIGame uiGame;
+	public final UIFriends uiFriends;
 	
 	public HomePage(UI ui) {
 		super(ui.getDesign());
@@ -29,6 +33,7 @@ public class HomePage extends MyPage{
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);
 		uiGame = new UIGame(ui);
+		uiFriends = new UIFriends(ui);
 		
 		JPanel topPanel = new JPanel();
 		add(topPanel, BorderLayout.NORTH);
@@ -60,6 +65,8 @@ public class HomePage extends MyPage{
 		
 		JPanel uiFreundeHolder = new JPanel();
 		rightPanel.add(uiFreundeHolder);
+		uiFreundeHolder.setLayout(new BorderLayout());
+		uiFreundeHolder.add(uiFriends, BorderLayout.CENTER);
 		
 		JPanel uiChat = new JPanel();
 		add(uiChat, BorderLayout.CENTER);
@@ -67,6 +74,13 @@ public class HomePage extends MyPage{
 		uiGames.addGame(0, "$BEAT ME$");
 		uiGames.addGame(0, "JOIN FOR FREE");
 		
+		UserData[] data = {
+				new UserData(0, "Daniel"),
+				new UserData(1, "Hannes"),
+				new UserData(2, "Ah")
+		};
+		//TODO: Does not work
+		uiFriends.setFriends(data);
 	}
 	
 	
