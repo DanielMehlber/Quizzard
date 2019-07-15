@@ -118,10 +118,20 @@ public class Connection {
 		ResultSet set = null;
 		int id=0;
 		try {
+			set=stm.executeQuery("SELECT COUNT(name) FROM q11info1.player;");
+			if(set.next())
+				id=set.getInt("count");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		id=id+1;
+		try {
 			set=stm.executeQuery("SELECT name FROM q11info1.player WHERE (name='"+name+"');");
 				if (!set.next()) {
-					stm.executeUpdate("INSERT INTO q11info1.player (name, password, trophies, playedgames, online) VALUES ('"+name+"', '"+pw+"', 0, 0, TRUE);");
-					login(name, pw);
+					stm.executeUpdate("INSERT INTO q11info1.player (name, password, trophies, playedgames, online, id) VALUES ('"+name+"', '"+pw+"', 0, 0, TRUE, "+id+");");
+					mainComponent.login(name, pw);
 				}
 				else {
 					code=ErrCode.ERR_REGISTRATION_REDUNDANT_USERNAME;
