@@ -99,10 +99,16 @@ public class Connection {
 			Console.error("login", "Some Error occured", false);
 			e.printStackTrace();
 		}
-		
+		//UPDATE q11info1.player SET online=true WHERE (name='"+name+"');
 		if(code == ErrCode.NULL) {
 			Console.info("login", "User '"+name+"' erfolgreich eingeloggt", false);
 			mainComponent.setUserData(userInformation(name));
+			try {
+				stm.executeUpdate("UPDATE q11info1.player SET online=true WHERE (name='"+name+"')");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		return code;
@@ -155,10 +161,12 @@ public class Connection {
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (name='"+name+"');");
-			set.next();
-			int id=set.getInt("id");
-			user.setUserID(id);
-			user.setTrophies(set.getInt("trophies"));
+			if (set.next()) {
+				int id=set.getInt("id");
+				user.setUserID(id);
+				user.setTrophies(set.getInt("trophies"));
+				user.setOnline(set.getBoolean("online"));;
+			}
 			//TODO: Fetch friends
 			//TODO: Fetch Games
 
