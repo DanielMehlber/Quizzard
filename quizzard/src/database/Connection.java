@@ -1,13 +1,14 @@
 package database;
 
-import java.beans.FeatureDescriptor;
 import java.sql.*;
 import java.util.ArrayList;
 
 import main.Console;
 import main.ErrCode;
+import main.GameData;
 import main.MainComponent;
 import main.UserData;
+import ui.Notification;
 
 
 /**
@@ -102,7 +103,7 @@ public class Connection {
 		//UPDATE q11info1.player SET online=true WHERE (name='"+name+"');
 		if(code == ErrCode.NULL) {
 			Console.info("login", "User '"+name+"' erfolgreich eingeloggt", false);
-			mainComponent.setUserData(userInformation(name));
+			mainComponent.setUserData(fetchUserData(name));
 			try {
 				stm.executeUpdate("UPDATE q11info1.player SET online=true WHERE (name='"+name+"')");
 			} catch (SQLException e) {
@@ -155,14 +156,15 @@ public class Connection {
 	 * @param name Name of the user
 	 * @return UserData
 	 */
-	private UserData userInformation (String name) {
+	public UserData fetchUserData(String name) {
 		ResultSet set = null;
-		UserData user=new UserData(name);
+		UserData user=new UserData(-1, name);
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (name='"+name+"');");
 			if (set.next()) {
 				int id=set.getInt("id");
+				
 				user.setUserID(id);
 				user.setTrophies(set.getInt("trophies"));
 				user.setOnline(set.getBoolean("online"));;
@@ -176,5 +178,37 @@ public class Connection {
 			}
 		return user;
 		
+	}
+	
+	//TODO: Hannes
+	public UserData fetchUserData(int id) {
+		return null;
+	}
+	
+	//TODO: Hannes
+	/**
+	 * Creates new GameData Object by game-id
+	 * @param id
+	 * @return
+	 */
+	public GameData fetchGameData(int id) {
+		return null;
+	}
+	
+	//TODO: Hannes
+	/**
+	 * Returns if there are new notifications or not
+	 * @return boolean
+	 */
+	public boolean fetchNotificationStatus() {
+		/*
+		 * Kleine Erklärung: Der Spieler besitzt ein Attribut in der Datenbank, in dem gespeichert wird, ob es neue nachrichten für ihn gibt
+		 */
+		return false;
+	}
+	
+	//TODO: Hannes
+	public Notification[] fetchNotifications() {
+		return null;
 	}
 }

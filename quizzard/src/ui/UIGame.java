@@ -1,10 +1,9 @@
 package ui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.danielmehlber.myui.MyLabel;
+import com.danielmehlber.myui.MyList;
 import com.danielmehlber.myui.MyPanel;
 
 public class UIGame extends MyPanel{
@@ -15,6 +14,7 @@ public class UIGame extends MyPanel{
 		this.ui = ui;
 		setLayout(null);
 		setColorStyle(COLOR_STYLE.CUSTOM);
+		setHeader("Ausgewähltes Spiel");
 		
 		MyLabel lblName = new MyLabel(getDesign());
 		lblName.setBounds(10, 27, 179, 24);
@@ -25,10 +25,11 @@ public class UIGame extends MyPanel{
 		lblRound.setBounds(168, 27, 122, 24);
 		add(lblRound);
 		
-		MyPanel player = new MyPanel(getDesign());
+		MyList player = new MyList(getDesign());
 		player.setRoundness(player.getWidth());
 		player.setBounds(10, 71, 280, 162);
 		add(player);
+		
 		
 	}
 	

@@ -1,7 +1,5 @@
 package ui;
 
-import javax.swing.JPanel;
-
 import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyPanel;
 import java.awt.event.MouseEvent;

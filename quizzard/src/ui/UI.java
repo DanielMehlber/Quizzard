@@ -2,13 +2,8 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-
 import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyDesign;
-import com.danielmehlber.myui.MyDirection;
 import com.danielmehlber.myui.MyFrame;
 import com.danielmehlber.myui.MySyncTask;
 

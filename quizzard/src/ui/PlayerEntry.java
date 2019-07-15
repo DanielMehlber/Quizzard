@@ -2,7 +2,6 @@ package ui;
 
 import javax.swing.JPanel;
 
-import com.danielmehlber.myui.MyPanel;
 import javax.swing.JLabel;
 
 public class PlayerEntry extends JPanel{

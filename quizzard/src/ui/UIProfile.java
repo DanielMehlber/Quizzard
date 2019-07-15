@@ -1,7 +1,5 @@
 package ui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.danielmehlber.myui.MyButton;
@@ -11,8 +9,6 @@ import com.danielmehlber.myui.MyPanel;
 import main.UserData;
 
 import java.awt.Dimension;
-
-import javax.swing.JButton;
 
 /**
  * Contains all Profile data in visualized and structured manner

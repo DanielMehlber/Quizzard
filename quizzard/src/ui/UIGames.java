@@ -1,17 +1,7 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
-
-import com.danielmehlber.myui.Designable;
 import com.danielmehlber.myui.MyDesign;
 import com.danielmehlber.myui.MyList;
 import com.danielmehlber.myui.MyPanel;

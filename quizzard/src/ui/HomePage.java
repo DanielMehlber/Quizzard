@@ -3,14 +3,9 @@ package ui;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-
 import com.danielmehlber.myui.MyPage;
-import com.danielmehlber.myui.MyPanel;
-import java.awt.Component;
 import java.awt.Dimension;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 
 /**

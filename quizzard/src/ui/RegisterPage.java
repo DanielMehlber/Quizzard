@@ -1,22 +1,18 @@
 package ui;
 
-import java.awt.Color;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.danielmehlber.myui.MyButton;
-import com.danielmehlber.myui.MyDialog;
 import com.danielmehlber.myui.MyDirection;
 import com.danielmehlber.myui.MyLabel;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 
-import main.Console;
 import main.ErrCode;
 
 /**
@@ -24,7 +20,8 @@ import main.ErrCode;
  * @author mehlber
  *
  */
-public class RegisterPage extends MyPage {
+
+public class RegisterPage extends MyPage { 
 
 	
 	private UI ui;
