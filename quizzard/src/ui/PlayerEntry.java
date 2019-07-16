@@ -26,6 +26,7 @@ public class PlayerEntry extends MyPanel{
 		image = new MyPanel(ui.getDesign());
 		image.setBounds(10, 10, 64, 64);
 		image.setRoundness(image.getWidth());
+		image.setTitled(false);
 		add(image);
 		
 		MyLabel lblName = new MyLabel(ui.getDesign());
@@ -37,6 +38,7 @@ public class PlayerEntry extends MyPanel{
 		lblTrophies.setBounds(83, 43, 207, 30);
 		lblTrophies.setText("999");
 		add(lblTrophies);
+		setSize(290, 80);
 	}
 	
 	public void paint(Graphics g) {

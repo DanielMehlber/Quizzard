@@ -63,7 +63,6 @@ public class UIGames extends MyList{
 	public void applyDesign() {
 		MyDesign design = getDesign();
 		setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
-		//TODO: Derived class should set list background here (maybe overwrite setBackground)
 	}
 
 }

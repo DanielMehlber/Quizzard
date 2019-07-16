@@ -41,7 +41,8 @@ public class UI extends MyFrame{
 		pageRegister = new RegisterPage(this);
 		pageHome = new HomePage(this);
 		
-		changePage(pageHome, null); // DEBUG
+		changePage(pageStart, null); // DEBUG
+		setResizable(true);
 		
 		go(600, 600);
 		
@@ -55,7 +56,7 @@ public class UI extends MyFrame{
 				MySyncTask.sync(30);
 			}
 			
-		});
+		}).start();
 	}
 	
 	public MainComponent getMainComponent() {

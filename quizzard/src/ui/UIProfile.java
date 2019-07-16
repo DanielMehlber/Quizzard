@@ -32,7 +32,7 @@ public class UIProfile extends MyPanel{
 		this.ui = ui;
 		setPreferredSize(new Dimension(300,299));
 		setLayout(null);
-		setColorStyle(COLOR_STYLE.DESIGN_BASE);
+		setColorStyle(COLOR_STYLE.CUSTOM);
 		setTitled(false);
 		
 		MyPanel picture = new MyPanel(ui.getDesign());
