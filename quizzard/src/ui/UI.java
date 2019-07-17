@@ -41,7 +41,7 @@ public class UI extends MyFrame{
 		pageRegister = new RegisterPage(this);
 		pageHome = new HomePage(this);
 		
-		changePage(pageStart, null); // DEBUG
+		changePage(pageHome, null); // DEBUG
 		setResizable(true);
 		
 		go(600, 600);

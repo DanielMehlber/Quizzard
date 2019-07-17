@@ -3,6 +3,8 @@ package ui;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+
+import com.danielmehlber.myui.MyButton;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyPanel;
 import com.danielmehlber.myui.MyPanel.COLOR_STYLE;
@@ -10,6 +12,7 @@ import com.danielmehlber.myui.MyPanel.COLOR_STYLE;
 import main.UserData;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.MultipleGradientPaint.ColorSpaceType;
 
 import javax.swing.BoxLayout;
@@ -26,6 +29,8 @@ public class HomePage extends MyPage{
 	public final UIProfile uiProfile;
 	public final UIGame uiGame;
 	public final UIFriends uiFriends;
+	public final MyButton btnCreateGame;
+	public final MyButton btnJoinGame;
 	
 	public HomePage(UI ui) {
 		super(ui.getDesign());
@@ -33,6 +38,10 @@ public class HomePage extends MyPage{
 		setLayout(new BorderLayout(0, 0));
 		setSize(1000, 800);
 		
+		btnCreateGame = new MyButton(getDesign(), "Spiel erstellen");
+		btnCreateGame.setPreferredSize(new Dimension(200, 35));
+		btnJoinGame = new MyButton(getDesign(), "Spiel beitreten");
+		btnJoinGame.setPreferredSize(new Dimension(200, 35));
 		
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);
@@ -41,8 +50,13 @@ public class HomePage extends MyPage{
 		
 		MyPanel topPanel = new MyPanel(getDesign());
 		add(topPanel, BorderLayout.NORTH);
+		topPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		topPanel.setPreferredSize(new Dimension(0, 50));
 		topPanel.setColorStyle(COLOR_STYLE.DESIGN_BASE);
+		topPanel.setTitled(false);
+		topPanel.add(btnCreateGame);
+		topPanel.add(btnJoinGame);
+		topPanel.setPreferredSize(new Dimension(0, 50));
 		
 		MyPanel leftPanel = new MyPanel(getDesign());
 		add(leftPanel, BorderLayout.WEST);
@@ -55,6 +69,7 @@ public class HomePage extends MyPage{
 		uiSpieleHolder.setLayout(new BorderLayout());
 		uiSpieleHolder.add(uiGames, BorderLayout.CENTER);
 		uiSpieleHolder.setColorStyle(COLOR_STYLE.DESIGN_BASE);
+		uiSpieleHolder.setTitled(false);
 		
 		MyPanel uiSpielHolder = new MyPanel(getDesign());
 		leftPanel.add(uiSpielHolder);
@@ -85,6 +100,7 @@ public class HomePage extends MyPage{
 		MyPanel uiChat = new MyPanel(getDesign());
 		uiChat.setColorStyle(COLOR_STYLE.DESIGN_BASE);
 		add(uiChat, BorderLayout.CENTER);
+		uiChat.setTitled(false);
 		
 		uiGames.addGame(0, "$BEAT ME$");
 		uiGames.addGame(0, "JOIN FOR FREE");
