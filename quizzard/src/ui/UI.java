@@ -2,13 +2,8 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-
-import javax.swing.JPanel;
-
 import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyDesign;
-import com.danielmehlber.myui.MyDirection;
 import com.danielmehlber.myui.MyFrame;
 import com.danielmehlber.myui.MySyncTask;
 
@@ -46,7 +41,8 @@ public class UI extends MyFrame{
 		pageRegister = new RegisterPage(this);
 		pageHome = new HomePage(this);
 		
-		changePage(pageStart, null); // DEBUG
+		changePage(pageHome, null); // DEBUG
+		setResizable(true);
 		
 		go(600, 600);
 		
@@ -60,7 +56,7 @@ public class UI extends MyFrame{
 				MySyncTask.sync(30);
 			}
 			
-		});
+		}).start();
 	}
 	
 	public MainComponent getMainComponent() {

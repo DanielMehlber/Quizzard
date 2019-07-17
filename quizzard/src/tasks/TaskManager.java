@@ -2,8 +2,6 @@ package tasks;
 
 import java.util.ArrayList;
 
-import com.danielmehlber.myui.MySyncTask;
-
 /**
  * Organizes a few Tasks
  * @author mehlber

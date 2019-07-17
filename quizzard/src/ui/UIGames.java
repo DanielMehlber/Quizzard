@@ -1,17 +1,9 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.EmptyBorder;
-
 import com.danielmehlber.myui.MyDesign;
+import com.danielmehlber.myui.MyList;
 import com.danielmehlber.myui.MyPanel;
 
 /**
@@ -19,12 +11,11 @@ import com.danielmehlber.myui.MyPanel;
  * @author mehlber
  *
  */
-public class UIGames extends MyPanel{
+public class UIGames extends MyList{
 	
-	private JScrollPane scrollPane;
 	private ArrayList<GameEntry> gameEntries;
 	private UI ui;
-	private JPanel contentPane;
+	
 	
 	public UIGames(UI ui) {
 		super(ui.getDesign());
@@ -34,14 +25,8 @@ public class UIGames extends MyPanel{
 		setHeader("Spiele");
 		setHeaderStyle(MyPanel.HEADER_STYLE.BOX);
 		gameEntries = new ArrayList<GameEntry>();
-		setLayout(new BorderLayout(0, 0));
-		contentPane = new JPanel();
-		scrollPane = new JScrollPane(contentPane);
-		contentPane.setLayout(null);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBackground(Color.WHITE);
+		//setLayout(new BorderLayout(0, 0));
 		
-		add(scrollPane);
 		applyDesign();
 		
 	}
@@ -53,12 +38,8 @@ public class UIGames extends MyPanel{
 	 */
 	public void addGame(int id, String name) {
 		GameEntry ge = new GameEntry(ui, id, name);
-		ge.setLocation(0, (int)(gameEntries.size()*ge.getHeight()*1.05));
+		addEntry(ge);
 		gameEntries.add(ge);
-		contentPane.add(ge);
-		scrollPane.revalidate();
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		contentPane.setPreferredSize(new Dimension(200, ge.getHeight() * gameEntries.size()));
 	}
 	
 	/**
@@ -77,20 +58,11 @@ public class UIGames extends MyPanel{
 		return r;
 	}
 	
+	
 	@Override
 	public void applyDesign() {
 		MyDesign design = getDesign();
-		if(contentPane != null)
-			contentPane.setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
-		if(scrollPane != null) {
-			scrollPane.setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
-			JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-			verticalScrollBar.setBackground(design.baseColor);
-			verticalScrollBar.setForeground(design.accentColor);
-			verticalScrollBar.setBorder(new EmptyBorder(getInsets()));
-		}else
-			
-		setColor(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
+		setBackground(design.baseColor.lighter(UI.homePagePanelLightnessFactor));
 	}
 
 }

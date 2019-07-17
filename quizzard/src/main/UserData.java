@@ -24,16 +24,16 @@ public class UserData {
 	/**
 	 * Id list of users friends
 	 */
-	private ArrayList<Integer> friends;
+	private int[] friends;
 	/**
 	 * Id list of users games
 	 */
-	private ArrayList<Integer> games;
+	private int[] games;
 	
 	private int trophies;
 	
 	
-	public UserData(String username) {
+	public UserData(int id, String username) {
 		this.username = username;
 	}
 
@@ -68,22 +68,22 @@ public class UserData {
 	}
 
 
-	public ArrayList<Integer> getFriends() {
+	public int[] getFriends() {
 		return friends;
 	}
 
 
-	public void setFriends(ArrayList<Integer> friends) {
+	public void setFriends(int[] friends) {
 		this.friends = friends;
 	}
 
 
-	public ArrayList<Integer> getGames() {
+	public int[] getGames() {
 		return games;
 	}
 
 
-	public void setGames(ArrayList<Integer> games) {
+	public void setGames(int[] games) {
 		this.games = games;
 	}
 

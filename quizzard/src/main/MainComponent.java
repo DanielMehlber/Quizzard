@@ -2,14 +2,10 @@ package main;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
 import database.Connection;
-import tasks.Task;
 import tasks.TaskManager;
 import tasks.TimedTask;
+import ui.Notification;
 import ui.UI;
 
 /**
@@ -37,8 +33,7 @@ public class MainComponent {
 		connection = new Connection(this);
 		connection.connect();
 		TaskManager t = new TaskManager(60);
-		TimedTask t0 = new TimedTask(() -> System.out.println("TASK"), false, 1f);
-		t.add(t0);
+		t.add(new TimedTask(()->refreshGames(), true, 5f));
 		t.start();
 	}
 	
@@ -137,9 +132,20 @@ public class MainComponent {
 		ui.pageHome.uiProfile.setUserData(userdata);
 	}
 	
-	public void updateData() {
+	
+	public void refreshNotifcations() {
 		
 	}
+	
+	public void refreshProfile() {
+		
+	}
+	
+	public void refreshGames() {
+		
+	}
+	
+
 	
 
 }

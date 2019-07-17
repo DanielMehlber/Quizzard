@@ -1,7 +1,5 @@
 package ui;
 
-import javax.swing.JPanel;
-
 import com.danielmehlber.myui.MyColor;
 import com.danielmehlber.myui.MyPanel;
 import java.awt.event.MouseEvent;
@@ -28,7 +26,7 @@ public class GameEntry extends MyPanel{
 	public GameEntry(UI ui, int id, String name) {
 		super(ui.getDesign());
 		this.ui = ui;
-		setSize(180, 65);
+		setSize(300, 65);
 		setLayout(null);
 		setTitled(false);
 		setColorStyle(COLOR_STYLE.DESIGN_ACCENT);

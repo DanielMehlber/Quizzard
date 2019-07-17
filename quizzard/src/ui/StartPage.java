@@ -1,10 +1,7 @@
 package ui;
 
-import javax.swing.JPanel;
-
 import com.danielmehlber.myui.MyButton;
 import com.danielmehlber.myui.MyDirection;
-import com.danielmehlber.myui.MyMedia;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyTextEntry;
 import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
@@ -12,32 +9,9 @@ import com.danielmehlber.myui.MyTextEntry.MY_TEXT_ENTRY_MODE;
 import main.Console;
 import main.ErrCode;
 
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.SpringLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.swing.JButton;
-import java.awt.FlowLayout;
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.imageio.ImageIO;
-import javax.swing.Box;
 
 /**
  * Page used for login

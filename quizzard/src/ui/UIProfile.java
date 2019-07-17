@@ -1,7 +1,5 @@
 package ui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.danielmehlber.myui.MyButton;
@@ -11,8 +9,6 @@ import com.danielmehlber.myui.MyPanel;
 import main.UserData;
 
 import java.awt.Dimension;
-
-import javax.swing.JButton;
 
 /**
  * Contains all Profile data in visualized and structured manner
@@ -34,9 +30,9 @@ public class UIProfile extends MyPanel{
 	public UIProfile(UI ui) {
 		super(ui.getDesign());
 		this.ui = ui;
-		setPreferredSize(new Dimension(300,299));
+		setPreferredSize(new Dimension(300,300));
 		setLayout(null);
-		setColorStyle(COLOR_STYLE.DESIGN_BASE);
+		setColorStyle(COLOR_STYLE.CUSTOM);
 		setTitled(false);
 		
 		MyPanel picture = new MyPanel(ui.getDesign());
