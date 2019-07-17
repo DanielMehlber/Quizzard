@@ -218,19 +218,24 @@ public class Connection {
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.game WHERE (id="+id+");");
 			if (set.next()) {
-				data.set ;
-				.setUsername(set.getString("name"));
-				user.setTrophies(set.getInt("trophies"));
-				user.setOnline(set.getBoolean("online"));;
+				data.setI(set.getInt("round"));
+				data.setJ(set.getInt("maxRounds"));
+				ArrayList<String> p=new ArrayList<String>();
+				while (set.next()) {
+					p.add(set.getString(""))
+				}
+				data.setPlayers(p);
 			}
 			//TODO: Fetch friends
 			//TODO: Fetch Games
 
-			
+			//SELECT player.name 
+			//FROM q11info1.player, q11info1.games, q11info1.playergame
+			//WHERE playergame.playerid=player.id AND playergame.gameId=games.id;
 		} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		return user;
+		return data;
 	}
 	
 	//TODO: Hannes
