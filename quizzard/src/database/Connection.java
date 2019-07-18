@@ -186,7 +186,7 @@ public class Connection {
 	 */
 	public UserData fetchUserData(int id) {
 		ResultSet set = null;
-		UserData user=new UserData(-1, name);
+		UserData user=new UserData(-1, "");
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (id="+id+");");
@@ -216,14 +216,17 @@ public class Connection {
 		GameData data=new GameData(id, null, null, 0, 0);
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
-			set=stm.executeQuery("SELECT * FROM q11info1.game WHERE (id="+id+");");
+			set=stm.executeQuery("SELECT * FROM q11info1.games WHERE (id="+id+");");
 			if (set.next()) {
 				data.setI(set.getInt("round"));
 				data.setJ(set.getInt("maxRounds"));
 				ArrayList<String> p=new ArrayList<String>();
 				while (set.next()) {
-					p.add(set.getString(""))
+					//NOTE: Was machst du da? Du lädst nichts?
+					p.add(set.getString(""));
 				}
+				
+				//NOTE: Die Spieler werden mit ihren ids gespeichert, nicht mit Strings
 				data.setPlayers(p);
 			}
 			//TODO: Fetch friends

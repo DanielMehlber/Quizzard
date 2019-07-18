@@ -32,6 +32,7 @@ public class MainComponent {
 		ui = new UI(this);
 		connection = new Connection(this);
 		connection.connect();
+		connection.fetchGameData(0);
 		TaskManager t = new TaskManager(60);
 		t.add(new TimedTask(()->refreshGames(), true, 5f));
 		t.start();
@@ -44,6 +45,7 @@ public class MainComponent {
 	public static void main(String[]args) {
 		Console.info("main", "game started", false);
 		new MainComponent();
+		
 	}
 	
 	/**
