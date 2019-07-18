@@ -8,6 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/postgresql-42.2.6.jar"/>
-	<classpathentry kind="lib" path="lib/MyUI-19.7.16.jar"/>
+	<classpathentry kind="lib" path="lib/MyUI-19.7.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
