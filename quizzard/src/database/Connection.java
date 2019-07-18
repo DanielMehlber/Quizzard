@@ -179,10 +179,30 @@ public class Connection {
 		return user;
 		
 	}
-	
-	//TODO: Hannes
+	/**
+	 * Creates UserData.
+	 * @param id ID of the user
+	 * @return UserData
+	 */
 	public UserData fetchUserData(int id) {
-		return null;
+		ResultSet set = null;
+		UserData user=new UserData(-1, name);
+		ArrayList<Integer> a=new ArrayList<Integer>();
+		try {
+			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (id="+id+");");
+			if (set.next()) {
+				user.setUsername(set.getString("name"));
+				user.setTrophies(set.getInt("trophies"));
+				user.setOnline(set.getBoolean("online"));;
+			}
+			//TODO: Fetch friends
+			//TODO: Fetch Games
+
+			
+		} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return user;
 	}
 	
 	//TODO: Hannes
@@ -192,7 +212,30 @@ public class Connection {
 	 * @return
 	 */
 	public GameData fetchGameData(int id) {
-		return null;
+		ResultSet set = null;
+		GameData data=new GameData(id, null, null, 0, 0);
+		ArrayList<Integer> a=new ArrayList<Integer>();
+		try {
+			set=stm.executeQuery("SELECT * FROM q11info1.game WHERE (id="+id+");");
+			if (set.next()) {
+				data.setI(set.getInt("round"));
+				data.setJ(set.getInt("maxRounds"));
+				ArrayList<String> p=new ArrayList<String>();
+				while (set.next()) {
+					p.add(set.getString(""))
+				}
+				data.setPlayers(p);
+			}
+			//TODO: Fetch friends
+			//TODO: Fetch Games
+
+			//SELECT player.name 
+			//FROM q11info1.player, q11info1.games, q11info1.playergame
+			//WHERE playergame.playerid=player.id AND playergame.gameId=games.id;
+		} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return data;
 	}
 	
 	//TODO: Hannes
