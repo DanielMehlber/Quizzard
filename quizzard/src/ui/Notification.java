@@ -2,11 +2,9 @@ package ui;
 
 public class Notification {
 
-	private final String message;
-	private final int id;
+	private String message;
 	
-	public Notification(int id, String message) {
-		this.id = id;
+	public Notification(String message) {
 		this.message = message;
 	}
 

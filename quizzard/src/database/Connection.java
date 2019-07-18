@@ -242,15 +242,36 @@ public class Connection {
 	 * Returns if there are new notifications or not
 	 * @return boolean
 	 */
-	public boolean fetchNotificationStatus() {
-		/*
-		 * Kleine Erklärung: Der Spieler besitzt ein Attribut in der Datenbank, in dem gespeichert wird, ob es neue nachrichten für ihn gibt
-		 */
-		return false;
+	public boolean fetchNotificationStatus(int id) {
+		ResultSet set;
+		boolean b=false;
+		try {
+			set=stm.executeQuery("SELECT * FROM q11info1.notification WHERE playerid="+id+";");
+			if (set.next()) {
+				b=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return b;
 	}
 	
 	//TODO: Hannes
 	public Notification[] fetchNotifications() {
+		ResultSet set;
+		Notification[] b=null;
+		try {
+			set=stm.executeQuery("SELECT * FROM q11info1.notification WHERE playerid="+id+";");
+			if (set.next()) {
+				b=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 }
