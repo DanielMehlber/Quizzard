@@ -194,9 +194,21 @@ public class Connection {
 				user.setTrophies(set.getInt("trophies"));
 				user.setOnline(set.getBoolean("online"));;
 			}
-			//TODO: Fetch friends
-			//TODO: Fetch Games
-
+			//Friends
+			set=stm.executeQuery("SELECT friends.player2id FROM q11info1.friends WHERE player1id="+id+";");
+			int[] f=new int[lengthQuery(set)]; 
+			for(int i=0; i<f.length;i++) {
+				f[i]=set.getInt("player2id");
+			}
+			user.setFriends(f);
+			
+			//Games
+			set=stm.executeQuery("SELECT games.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND player.id="+id+";");
+			int[] g=new int[lengthQuery(set)]; 
+			for(int i=0; i<g.length;i++) {
+				g[i]=set.getInt("id");
+			}
+			user.setGames(g);
 			
 		} catch (SQLException e) {
 				e.printStackTrace();
@@ -204,7 +216,6 @@ public class Connection {
 		return user;
 	}
 	
-	//TODO: Hannes
 	/**
 	 * Creates new GameData Object by game-id
 	 * @param id
@@ -236,8 +247,6 @@ public class Connection {
 			}
 		return data;
 	}
-	
-	//TODO: Hannes
 	/**
 	 * Returns if there are new notifications or not
 	 * @return boolean
@@ -260,7 +269,6 @@ public class Connection {
 	private int lengthQuery(ResultSet set) throws SQLException {
 		return set.getFetchSize();
 	}
-	//TODO: Hannes
 	public Notification[] fetchNotifications(int id) {
 		ResultSet set;
 		Notification[] b=null;
