@@ -213,28 +213,25 @@ public class Connection {
 	 */
 	public GameData fetchGameData(int id) {
 		ResultSet set = null;
-		GameData data=new GameData(id, null, null, 0, 0);
+		GameData data=new GameData(id, null, null, null, 0, 0);
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.games WHERE (id="+id+");");
 			if (set.next()) {
 				data.setI(set.getInt("round"));
 				data.setJ(set.getInt("maxRounds"));
-				ArrayList<String> p=new ArrayList<String>();
+				data.setDes(set.getString("describtion"));
+				data.setPw(set.getString("password"));
+				set=stm.executeQuery("SELECT player.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND games.id="+id+";")
+				ArrayList<Integer> p=new ArrayList<Integer>();
 				while (set.next()) {
-					//NOTE: Was machst du da? Du lädst nichts?
-					p.add(set.getString(""));
+					p.add(set.getInt("id"));
 				}
-				
-				//NOTE: Die Spieler werden mit ihren ids gespeichert, nicht mit Strings
 				data.setPlayers(p);
 			}
 			//TODO: Fetch friends
 			//TODO: Fetch Games
 
-			//SELECT player.name 
-			//FROM q11info1.player, q11info1.games, q11info1.playergame
-			//WHERE playergame.playerid=player.id AND playergame.gameId=games.id;
 		} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -1,16 +1,18 @@
 package main;
 
+import java.util.ArrayList;
+
 public class GameData {
 
 	private int id;
 	private boolean öffentlich;
-	private int[] playerid;
+	private ArrayList<Integer> playerid;
 	private String password;
 	private String describtion;
 	private int round;
 	private int max_rounds;
 	
-	public GameData(int id, int[] p, String pw, String de, int i, int j) {
+	public GameData(int id, ArrayList<Integer> p, String pw, String de, int i, int j) {
 		this.id = id;
 		this.playerid = p;
 		password=pw;
@@ -27,7 +29,7 @@ public class GameData {
 	public void setDes(String d) {
 		describtion=d;
 	}
-	public void setPlayers (int[] p) {
+	public void setPlayers (ArrayList<Integer> p) {
 		playerid=p;
 	}
 	public void setI(int a) {
