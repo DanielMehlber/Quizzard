@@ -186,8 +186,7 @@ public class Connection {
 	 */
 	public UserData fetchUserData(int id) {
 		ResultSet set = null;
-		UserData user=new UserData(-1, "");
-		ArrayList<Integer> a=new ArrayList<Integer>();
+		UserData user=new UserData(id, "");
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.player WHERE (id="+id+");");
 			if (set.next()) {
@@ -222,7 +221,7 @@ public class Connection {
 				data.setJ(set.getInt("maxRounds"));
 				data.setDes(set.getString("describtion"));
 				data.setPw(set.getString("password"));
-				set=stm.executeQuery("SELECT player.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND games.id="+id+";")
+				set=stm.executeQuery("SELECT player.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND games.id="+id+";");
 				ArrayList<Integer> p=new ArrayList<Integer>();
 				while (set.next()) {
 					p.add(set.getInt("id"));
