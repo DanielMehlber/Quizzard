@@ -257,21 +257,27 @@ public class Connection {
 		
 		return b;
 	}
-	
+	private int lengthQuery(ResultSet set) throws SQLException {
+		return set.getFetchSize();
+	}
 	//TODO: Hannes
-	public Notification[] fetchNotifications() {
+	public Notification[] fetchNotifications(int id) {
 		ResultSet set;
 		Notification[] b=null;
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.notification WHERE playerid="+id+";");
 			if (set.next()) {
-				b=true;
+				int l=lengthQuery(set);
+				b=new Notification[l];
+				for(int i=0; i<b.length; i++) {
+					b[i]=new Notification(set.getString("notification"));
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return null;
+		return b;
 	}
 }
