@@ -10,6 +10,8 @@ import com.danielmehlber.myui.MyButton;
 import com.danielmehlber.myui.MyLabel;
 import com.danielmehlber.myui.MyPage;
 
+import main.QuestionData;
+
 public class QuestionPage extends MyPage{
 
 	private final UI ui;
@@ -63,7 +65,7 @@ public class QuestionPage extends MyPage{
 		
 	}
 	
-	public void setQuestion(String game, String q, String topic, String a2, String a3, String a4) {
+	public void setQuestion(QuestionData data) {
 		
 	}
 }

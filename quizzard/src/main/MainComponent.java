@@ -2,6 +2,8 @@ package main;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+
 import database.Connection;
 import tasks.TaskManager;
 import tasks.TimedTask;
@@ -34,7 +36,9 @@ public class MainComponent {
 		connection.connect();
 		connection.fetchGameData(0);
 		TaskManager t = new TaskManager(60);
-		t.add(new TimedTask(()->refreshGames(), true, 5f));
+		t.add(new TimedTask(()->refreshGames(), true, 10f));
+		t.add(new TimedTask(()->refreshNotifcations(), true, 5f));
+		t.add(new TimedTask(()->refreshProfile(), true, 10f));
 		t.start();
 	}
 	
@@ -136,15 +140,30 @@ public class MainComponent {
 	
 	
 	public void refreshNotifcations() {
-		
+		if(anyNewNotifications())
+			ui.pageHome.uiNotifications.setNotifications(connection.fetchNotifications(userData.getUserID()));
 	}
 	
 	public void refreshProfile() {
-		
+		userData = connection.fetchUserData(userData.getUserID());
+		ui.pageHome.uiProfile.setUserData(userData);
 	}
 	
 	public void refreshGames() {
-		
+		int[] gameids = userData.getGames();
+		ArrayList<GameData> gd = new ArrayList<GameData>();
+		for(int id : gameids) {
+			gd.add(connection.fetchGameData(id));
+		}
+		ui.pageHome.uiGames.setGames((GameData[])gd.toArray());
+	}
+	
+	public void eraseNotification(int id) {
+		connection.eraseNotification(id);
+	}
+	
+	public boolean anyNewNotifications() {
+		return connection.fetchNotificationStatus(userData.getUserID());
 	}
 	
 

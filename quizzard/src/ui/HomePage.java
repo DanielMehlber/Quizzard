@@ -29,6 +29,7 @@ public class HomePage extends MyPage{
 	public final UIProfile uiProfile;
 	public final UIGame uiGame;
 	public final UIFriends uiFriends;
+	public final UINotifications uiNotifications;
 	public final MyButton btnCreateGame;
 	public final MyButton btnJoinGame;
 	
@@ -47,6 +48,7 @@ public class HomePage extends MyPage{
 		uiProfile = new UIProfile(ui);
 		uiGame = new UIGame(ui);
 		uiFriends = new UIFriends(ui);
+		uiNotifications = new UINotifications(ui);
 		
 		MyPanel topPanel = new MyPanel(getDesign());
 		add(topPanel, BorderLayout.NORTH);
@@ -101,6 +103,7 @@ public class HomePage extends MyPage{
 		uiChat.setColorStyle(COLOR_STYLE.DESIGN_BASE);
 		add(uiChat, BorderLayout.CENTER);
 		uiChat.setTitled(false);
+		uiChat.add(uiNotifications);
 		
 		uiGames.addGame(0, "$BEAT ME$");
 		uiGames.addGame(0, "JOIN FOR FREE");

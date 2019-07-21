@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GameData {
 
 	private int id;
+	private String name;
 	private boolean öffentlich;
 	private ArrayList<Integer> playerid;
 	private String password;
@@ -12,7 +13,7 @@ public class GameData {
 	private int round;
 	private int max_rounds;
 	
-	public GameData(int id, ArrayList<Integer> p, String pw, String de, int i, int j) {
+	public GameData(int id, String name, ArrayList<Integer> p, String pw, String de, int i, int j) {
 		this.id = id;
 		this.playerid = p;
 		password=pw;
@@ -20,24 +21,74 @@ public class GameData {
 		this.round = i;
 		this.max_rounds = j;
 	}
-	public void setId(int i) {
-		id=i;
+
+	public int getId() {
+		return id;
 	}
-	public void setPw(String n) {
-		password=n;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setDes(String d) {
-		describtion=d;
+
+	public boolean isÖffentlich() {
+		return öffentlich;
 	}
-	public void setPlayers (ArrayList<Integer> p) {
-		playerid=p;
+
+	public void setÖffentlich(boolean öffentlich) {
+		this.öffentlich = öffentlich;
 	}
-	public void setI(int a) {
-		round=a;
+
+	public ArrayList<Integer> getPlayerid() {
+		return playerid;
 	}
-	public void setJ(int j) {
-		max_rounds=j;
+
+	public void setPlayerid(ArrayList<Integer> playerid) {
+		this.playerid = playerid;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getDescribtion() {
+		return describtion;
+	}
+
+	public void setDescription(String describtion) {
+		this.describtion = describtion;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public void setRound(int round) {
+		this.round = round;
+	}
+
+	public int getMax_rounds() {
+		return max_rounds;
+	}
+
+	public void setMax_rounds(int max_rounds) {
+		this.max_rounds = max_rounds;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
+	
 	
 
 }

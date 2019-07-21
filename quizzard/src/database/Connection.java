@@ -223,24 +223,23 @@ public class Connection {
 	 */
 	public GameData fetchGameData(int id) {
 		ResultSet set = null;
-		GameData data=new GameData(id, null, null, null, 0, 0);
+		GameData data=new GameData(id, null, null, null, null, 0, 0);
 		ArrayList<Integer> a=new ArrayList<Integer>();
 		try {
 			set=stm.executeQuery("SELECT * FROM q11info1.games WHERE (id="+id+");");
 			if (set.next()) {
-				data.setI(set.getInt("round"));
-				data.setJ(set.getInt("maxRounds"));
-				data.setDes(set.getString("describtion"));
-				data.setPw(set.getString("password"));
+				data.setRound(set.getInt("round"));
+				data.setMax_rounds(set.getInt("maxRounds"));
+				data.setDescription(set.getString("describtion"));
+				data.setPassword(set.getString("password"));
+				//TODO: setName of game
 				set=stm.executeQuery("SELECT player.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND games.id="+id+";");
 				ArrayList<Integer> p=new ArrayList<Integer>();
 				while (set.next()) {
 					p.add(set.getInt("id"));
 				}
-				data.setPlayers(p);
+				data.setPlayerid(a);
 			}
-			//TODO: Fetch friends
-			//TODO: Fetch Games
 
 		} catch (SQLException e) {
 				e.printStackTrace();
@@ -266,9 +265,11 @@ public class Connection {
 		
 		return b;
 	}
+	
 	private int lengthQuery(ResultSet set) throws SQLException {
 		return set.getFetchSize();
 	}
+	
 	public Notification[] fetchNotifications(int id) {
 		ResultSet set;
 		Notification[] b=null;
@@ -278,7 +279,7 @@ public class Connection {
 				int l=lengthQuery(set);
 				b=new Notification[l];
 				for(int i=0; i<b.length; i++) {
-					b[i]=new Notification(set.getString("notification"));
+					b[i]=new Notification(set.getInt("id"), set.getString("notification"));
 				}
 			}
 		} catch (SQLException e) {
@@ -287,5 +288,21 @@ public class Connection {
 		}
 		
 		return b;
+	}
+	
+	/**
+	 * Deletes Notification from database
+	 * @param id id of notification
+	 */
+	public void eraseNotification(int id) {
+		
+	}
+	
+	/**
+	 * Returns all games currently running on server
+	 * @return
+	 */
+	public GameData[] fetchAllGames() {
+		return null;
 	}
 }

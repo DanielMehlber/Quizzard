@@ -16,14 +16,24 @@ public class UINotifications extends MyList{
 		notifications = new LinkedList<>();
 	}
 	
+	public void setNotifications(Notification[] n) {
+		
+		for(Notification e : n)
+			push(e);
+	}
+	
 	public void push(Notification n) {
 		notifications.add(n);
 		if(notifications.size() > max) {
 			Notification remove = notifications.poll();
-			//TODO: remove Notification from Table
-			//TODO: remove top notification
-			//TODO: add bottom notification
+			ui.mainComponent.eraseNotification(remove.getId());
+			//TODO: remove top notification ui
+			//TODO: add bottom notification ui
 		}
+	}
+	
+	public void remove_all() {
+		notifications.clear();
 	}
 
 }

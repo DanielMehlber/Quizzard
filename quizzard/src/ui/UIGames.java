@@ -6,6 +6,8 @@ import com.danielmehlber.myui.MyDesign;
 import com.danielmehlber.myui.MyList;
 import com.danielmehlber.myui.MyPanel;
 
+import main.GameData;
+
 /**
  * Panel displaying running games.
  * @author mehlber
@@ -40,6 +42,13 @@ public class UIGames extends MyList{
 		GameEntry ge = new GameEntry(ui, id, name);
 		addEntry(ge);
 		gameEntries.add(ge);
+	}
+	
+	public void setGames(GameData[] gamedatarray) {
+		gameEntries.clear();
+		removeAll();
+		for(GameData data : gamedatarray)
+			addGame(data.getId(), data.getName());
 	}
 	
 	/**
