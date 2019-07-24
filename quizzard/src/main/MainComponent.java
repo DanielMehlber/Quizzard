@@ -64,6 +64,7 @@ public class MainComponent {
 		if(code == ErrCode.NULL) {
 			Console.info("login", "Success", false);
 			ui.pageHome.uiProfile.setUserData(userData);
+			ui.pageHome.entered();
 			ui.home();
 		}
 		return code;
@@ -138,6 +139,11 @@ public class MainComponent {
 		ui.pageHome.uiProfile.setUserData(userdata);
 	}
 	
+	public void refreshAll() {
+		refreshProfile();
+		refreshGames();
+		refreshNotifcations();
+	}
 	
 	public void refreshNotifcations() {
 		if(anyNewNotifications())
@@ -145,17 +151,22 @@ public class MainComponent {
 	}
 	
 	public void refreshProfile() {
+		if(userData==null)
+			return;
 		userData = connection.fetchUserData(userData.getUserID());
 		ui.pageHome.uiProfile.setUserData(userData);
 	}
 	
 	public void refreshGames() {
+		Console.info("refresh", "Refreshing game list", false);
+		if(userData==null)
+			return;
 		int[] gameids = userData.getGames();
 		ArrayList<GameData> gd = new ArrayList<GameData>();
 		for(int id : gameids) {
 			gd.add(connection.fetchGameData(id));
 		}
-		ui.pageHome.uiGames.setGames((GameData[])gd.toArray());
+		ui.pageHome.uiGames.setGames(gd.toArray(new GameData[gd.size()]));
 	}
 	
 	public void eraseNotification(int id) {
@@ -163,7 +174,14 @@ public class MainComponent {
 	}
 	
 	public boolean anyNewNotifications() {
+		if(userData==null)
+			return false;
 		return connection.fetchNotificationStatus(userData.getUserID());
+	}
+	
+	public ErrCode createGame(GameData data) {
+		return ErrCode.NULL;
+		
 	}
 	
 

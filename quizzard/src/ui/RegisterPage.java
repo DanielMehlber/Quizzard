@@ -113,7 +113,7 @@ public class RegisterPage extends MyPage {
 			
 			@Override
 			public void componentResized(ComponentEvent e) {
-				//UI.center(_this, contentHolder, true, true);
+				UI.center(_this, contentHolder, true, true);
 			}
 			
 			@Override

@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import com.danielmehlber.myui.MyButton;
+import com.danielmehlber.myui.MyDirection;
 import com.danielmehlber.myui.MyPage;
 import com.danielmehlber.myui.MyPanel;
 import com.danielmehlber.myui.MyPanel.COLOR_STYLE;
@@ -43,6 +44,7 @@ public class HomePage extends MyPage{
 		btnCreateGame.setPreferredSize(new Dimension(200, 35));
 		btnJoinGame = new MyButton(getDesign(), "Spiel beitreten");
 		btnJoinGame.setPreferredSize(new Dimension(200, 35));
+		btnCreateGame.addRunnable(()->ui.changePage(ui.pageCreateGame, MyDirection.SOUTH));
 		
 		uiGames = new UIGames(ui);
 		uiProfile = new UIProfile(ui);
@@ -115,6 +117,12 @@ public class HomePage extends MyPage{
 		};
 		//TODO: Does not work
 		uiFriends.setFriends(data);
+		
+		
+	}
+	
+	public void entered() {
+		ui.mainComponent.refreshAll();
 	}
 	
 	

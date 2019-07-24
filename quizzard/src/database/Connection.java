@@ -41,7 +41,8 @@ public class Connection {
 	public void connect() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			con = DriverManager.getConnection("jdbc:postgresql://unterricht01.gym-friedberg.de/q11", "q11info1", "q11info1"); // Daten hier ändern
+			con = DriverManager.getConnection("jdbc:postgresql://localhost:6666/q11", "postgres", "al123pha"); // Daten hier ändern
+			//con = DriverManager.getConnection("jdbc:postgresql://unterricht01.gym-friedberg.de/q11", "q11info1", "q11info1"); // Daten hier ändern
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			Console.error("database", "Cannot connect to database", true);
@@ -230,7 +231,7 @@ public class Connection {
 			if (set.next()) {
 				data.setRound(set.getInt("round"));
 				data.setMax_rounds(set.getInt("maxRounds"));
-				data.setDescription(set.getString("describtion"));
+				data.setDescription(set.getString("description"));
 				data.setPassword(set.getString("password"));
 				//TODO: setName of game
 				set=stm.executeQuery("SELECT player.id FROM q11info1.player, q11info1.games, q11info1.playergame WHERE playergame.playerid=player.id AND playergame.gameId=games.id AND games.id="+id+";");
@@ -254,7 +255,7 @@ public class Connection {
 		ResultSet set;
 		boolean b=false;
 		try {
-			set=stm.executeQuery("SELECT * FROM q11info1.notification WHERE playerid="+id+";");
+			set=stm.executeQuery("SELECT * FROM q11info1.notification WHERE id="+id+";");
 			if (set.next()) {
 				b=true;
 			}
@@ -305,4 +306,36 @@ public class Connection {
 	public GameData[] fetchAllGames() {
 		return null;
 	}
+	
+	/**
+	 * Alters game data. If game doesnt exists yet, it gets created
+	 * @param data
+	 */
+	public void alterGameData(GameData data) {
+		//Wenn Spiel noch nicht existiert, erstellen
+		//Bei der id handelt es sich um einen SERIAL type in der Datenbank, d.h. sie wird automatisch im Client erstellt, wenn du ein neues Spiel hinzufuegst.
+		//Du musst also keine id in der Datenbank setzen, sondern nur die anderen Spalten. 
+		//Um zu prüfen obb ein spiel bereits existiert, kannst du überprüfen, ob es bereits ein Spiel mit dieser id gibt.
+	}
+	
+	/**
+	 * inserts notofication into databse
+	 * @param playerid
+	 * @param n
+	 */
+	public void sendNotification(int playerid, Notification n) {
+		
+	}
+	
+	/**
+	 * User enters game
+	 * @param id
+	 */
+	public void joinGame(int id) {
+
+	}
+	
+	
+	
+	
 }

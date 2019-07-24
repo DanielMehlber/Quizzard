@@ -22,6 +22,7 @@ public class UI extends MyFrame{
 	public final StartPage pageStart;
 	public final RegisterPage pageRegister;
 	public final HomePage pageHome;
+	public final CreateGamePage pageCreateGame;
 	public static final float pageChangeSpeedFac = 4f;
 	public static final int homePagePanelLightnessFactor = 30;
 	
@@ -40,6 +41,7 @@ public class UI extends MyFrame{
 		pageStart = new StartPage(this);
 		pageRegister = new RegisterPage(this);
 		pageHome = new HomePage(this);
+		pageCreateGame = new CreateGamePage(this);
 		
 		changePage(pageStart, null); // DEBUG
 		setResizable(true);

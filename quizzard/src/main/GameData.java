@@ -12,6 +12,7 @@ public class GameData {
 	private String describtion;
 	private int round;
 	private int max_rounds;
+	private int topicId;
 	
 	public GameData(int id, String name, ArrayList<Integer> p, String pw, String de, int i, int j) {
 		this.id = id;
@@ -84,6 +85,14 @@ public class GameData {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(int topicId) {
+		this.topicId = topicId;
 	}
 	
 	
