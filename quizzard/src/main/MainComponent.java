@@ -179,8 +179,23 @@ public class MainComponent {
 		return connection.fetchNotificationStatus(userData.getUserID());
 	}
 	
-	public ErrCode createGame(GameData data) {
-		return ErrCode.NULL;
+	public void createGame(GameData data) {
+		connection.alterGameData(data);
+		refreshGames();
+	}
+	
+	public Topic[] getAllTopics() {
+		//TODO: getAllTopics
+		return null;
+	}
+	
+	public void playGame(int id) {
+		GameData game = connection.fetchGameData(id);
+		//TODO: getQuestions by current round
+		//TODO: UI Questions
+	}
+	
+	public void sendAnswerResults(int gameid, int correctAnswers) {
 		
 	}
 	

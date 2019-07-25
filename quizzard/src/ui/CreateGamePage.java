@@ -13,14 +13,19 @@ import com.danielmehlber.myui.MyToggleButton;
 
 import main.Console;
 import main.GameData;
+import main.Topic;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -31,6 +36,7 @@ public class CreateGamePage extends MyPage{
 	private final int distAdditive = 15;
 	MyTextEntry entryMaxRounds;
 	MyTextEntry entryMaxPlayers;
+	JComboBox<Topic> topics;
 	
 	public CreateGamePage(UI ui) {
 		super(ui.getDesign());
@@ -73,13 +79,45 @@ public class CreateGamePage extends MyPage{
 		content.add(entryPassword);
 		
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(23, 375+ distAdditive, 286, 20+ distAdditive);
-		content.add(comboBox);
+		topics = new JComboBox<Topic>();
+		topics.setBounds(23, 375+ distAdditive, 286, 20+ distAdditive);
+		content.add(topics);
 		MyButton btnErstellen = new MyButton(getDesign(), "Erstellen");
 		btnErstellen.setBounds(220, 419+ distAdditive, 89, 23+ distAdditive);
 		content.add(btnErstellen);
-		btnErstellen.addRunnable(()->createGame(entryName.getText(), entryPassword.getText(), entryMaxRounds.getText(), entryMaxPlayers.getText(), comboBox, entryDescription.getText()));
+		btnErstellen.addRunnable(()->createGame(entryName.getText(), entryPassword.getText(), entryMaxRounds.getText(), entryMaxPlayers.getText(), topics, entryDescription.getText()));
+		topics.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				setTopics(ui.mainComponent.getAllTopics());
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		
 		MyButton btnZurueck = new MyButton(getDesign(), "Zur\u00FCck");
 		btnZurueck.setBounds(23, 419+ distAdditive, 89, 23+ distAdditive);
@@ -133,8 +171,18 @@ public class CreateGamePage extends MyPage{
 		ArrayList<Integer> p = new ArrayList<Integer>();
 		p.add(ui.mainComponent.userData.getUserID());
 		GameData data = new GameData(-1, name, p, pw, desc, player_count, round_count);
-		//TODO: Topic ID
-		
+		Topic t = (Topic)topics.getSelectedItem();
+		if(t == null) {
+			Console.error("game-creation", "Ungueltiges Topic ausgewaehlt", true);
+			return;
+		}
+		data.setTopicId(t.getId());
 		ui.mainComponent.createGame(data);
+	}
+	
+	public void setTopics(Topic[] topic_arr) {
+		topics.removeAllItems();
+		for(Topic t : topic_arr)
+			topics.addItem(t);
 	}
 }
