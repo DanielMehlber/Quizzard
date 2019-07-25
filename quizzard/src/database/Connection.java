@@ -239,7 +239,7 @@ public class Connection {
 				while (set.next()) {
 					p.add(set.getInt("id"));
 				}
-				data.setPlayerid(a);
+				data.setPlayerid(p);
 			}
 
 		} catch (SQLException e) {
